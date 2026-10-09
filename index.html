@@ -6,7 +6,7 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23ff6b1a'/%3E%3Cpath d='M14 18h36v9H37v22H27V27H14z' fill='%23fff'/%3E%3C/svg%3E">
 <title>Tool.Cars – Pro Car Diagnostic Scanners, Battery Testers & Adapters</title>
 <meta name="description" content="Hand-picked iCARZONE tools by category: JU flagship scanners, UR bidirectional scan tools, MA battery testers, HD S700 heavy-duty and OBD-I adapters. Lifetime free updates.">
-  <!-- Google tag (gtag.js) -->
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18429283112"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -81,6 +81,26 @@ footer{border-top:1px solid var(--line);padding:30px 0;color:var(--mut);font-siz
 footer p{margin-bottom:8px}
 footer a.pp{text-decoration:underline;font-weight:600;color:var(--ink)}
 @media(max-width:760px){.hero .wrap{grid-template-columns:1fr}.collage{height:320px}.perks{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}}
+
+.cmp-toggle{text-align:center;margin-top:10px}
+.cmp-toggle button{font:inherit;cursor:pointer;border:0}
+.cmp-panel{display:none;margin-top:26px;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:22px}
+.cmp-panel.open{display:block}
+.cmp-panel .pills{margin-bottom:16px}
+.cmp-panel .pills button{font:inherit;cursor:pointer;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:8px 18px;font-size:14px;font-weight:600;transition:.2s}
+.cmp-panel .pills button:hover{border-color:var(--a);color:var(--a)}
+.cmp-panel .pills button.on{background:var(--a);border-color:var(--a);color:#fff}
+.cmp-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table.cmp{border-collapse:collapse;width:100%;min-width:860px;font-size:14px}
+table.cmp th,table.cmp td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:center;vertical-align:middle}
+table.cmp thead th{color:var(--mut);font-size:12px;letter-spacing:.6px;text-transform:uppercase;position:sticky;top:0;background:var(--card)}
+table.cmp td:first-child,table.cmp th:first-child{text-align:left;position:sticky;left:0;background:var(--card);min-width:170px}
+table.cmp td:first-child b{display:block;font-size:15px}
+table.cmp td:first-child small{color:var(--mut);font-size:12px}
+table.cmp .y{color:#4ade80;font-weight:800}
+table.cmp .n{color:var(--mut)}
+table.cmp .pr{font-weight:800;white-space:nowrap}
+.cmp-note{color:var(--mut);font-size:12px;margin-top:12px;text-align:center}
 </style>
 </head>
 <body>
@@ -119,6 +139,17 @@ footer a.pp{text-decoration:underline;font-weight:600;color:var(--ink)}
   <p class="sub">Tap any product to see full details and order on the official iCARZONE store.</p>
   <div class="pills" id="pills"></div>
   <div id="cats"></div>
+</div></section>
+
+<section id="compare"><div class="wrap">
+  <h2>Not sure which one to pick?</h2>
+  <p class="sub">See the main differences between our scan tools and testers side by side.</p>
+  <div class="cmp-panel open" id="cmpPanel">
+    <div class="cmp-scroll"><table class="cmp"><thead><tr>
+      <th>Product</th><th>Screen</th><th>Bidirectional</th><th>ECU coding</th><th>Service functions</th><th>TPMS</th><th>Battery test</th><th>Price</th><th></th>
+    </tr></thead><tbody id="cmpBody"></tbody></table></div>
+    <p class="cmp-note">✓ = listed on the product page · – = not listed. Prices in USD. Prices and specs are set by iCARZONE and may change, always check the product page before buying.</p>
+  </div>
 </div></section>
 
 <section><div class="wrap">
@@ -241,6 +272,21 @@ const REVIEWS = [
  { stars:5, text:"It's really nice being able to diagnose your own car problems at home.", who:"Verified reviewer", prod:"UR600" },
  { stars:5, text:"Love it", who:"Billy Mckinney", prod:"JU2000" }
 ];
+
+// COMPARISON TABLE. y = true (✓), false/"" (–) or text. slug = product page name. Delete a row to hide it.
+const COMPARE = [
+ { cat:"ju", name:"JU2000 MAX", sub:"Workshop kit", screen:'10"', bidi:true, ecu:true, svc:"", tpms:true, batt:false, price:"$1,186.99", slug:"ju2000-max" },
+ { cat:"ju", name:"JU2000", sub:"All-system scanner", screen:"", bidi:true, ecu:true, svc:"50", tpms:"", batt:false, price:"$589.99", slug:"icarzone-ju2000" },
+ { cat:"ur", name:"UR1000", sub:"Flagship UR", screen:'7"', bidi:true, ecu:true, svc:"50", tpms:true, batt:false, price:"$329.99", slug:"icarzone-ur1000" },
+ { cat:"ur", name:"UR600", sub:"4 systems", screen:'5"', bidi:true, ecu:true, svc:"50", tpms:"", batt:false, price:"$199.99", slug:"icarzone-ur600" },
+ { cat:"ur", name:"UR400", sub:"German cars", screen:'5"', bidi:true, ecu:true, svc:"48", tpms:"", batt:false, price:"$189.99", slug:"icarzone-ur400" },
+ { cat:"ur", name:"UR300", sub:"All-system", screen:'4.3"', bidi:true, ecu:"", svc:"48", tpms:"", batt:false, price:"$269.99", slug:"icarzone-ur300" },
+ { cat:"ma", name:"MA900", sub:"OBD2 + battery tester", screen:"", bidi:false, ecu:false, svc:"", tpms:"", batt:true, price:"$69.99", slug:"ma900" },
+ { cat:"ma", name:"MA500", sub:"Battery tester", screen:"", bidi:false, ecu:false, svc:"", tpms:"", batt:true, price:"From $32.99", slug:"icarzone-ma500" },
+ { cat:"ma", name:"MA200 V6", sub:"OBD2 scanner", screen:'2.8"', bidi:true, ecu:"", svc:"6 resets", tpms:"", batt:false, price:"$99.99", slug:"icarzone-ma200-v6" },
+ { cat:"ma", name:"MA200 Plus", sub:"Multi-system OBD2", screen:'2.8"', bidi:true, ecu:"", svc:"6 resets", tpms:"", batt:false, price:"$144.99", slug:"icarzone-ma200-plus" },
+ { cat:"hd", name:"HD S700", sub:"Heavy-duty trucks", screen:'5"', bidi:"", ecu:"", svc:"8 resets", tpms:"", batt:false, price:"From $392.99", slug:"icarzone-hd-s700" }
+];
 /* ===================== END OF SETTINGS ===================== */
 
 document.querySelectorAll("[data-main]").forEach(function(el){
@@ -270,6 +316,21 @@ document.getElementById("cats").innerHTML = CATS.map(function(c){
 document.getElementById("revs").innerHTML = REVIEWS.map(function(r){
   return '<div class="rev"><div class="stars">'+"★".repeat(r.stars)+'</div><q>'+r.text+'</q><small><b>'+r.who+'</b> · '+r.prod+'</small></div>';
 }).join("");
+
+
+function cmpCell(v){
+  if(v===true) return '<span class="y">✓</span>';
+  if(v===false) return '<span class="n">✗</span>';
+  if(!v) return '<span class="n">–</span>';
+  return v;
+}
+function cmpRender(filter){
+  document.getElementById("cmpBody").innerHTML = COMPARE.filter(function(r){return filter==="all"||r.cat===filter}).map(function(r){
+    return '<tr><td><b>'+r.name+'</b><small>'+r.sub+'</small></td><td>'+cmpCell(r.screen)+'</td><td>'+cmpCell(r.bidi)+'</td><td>'+cmpCell(r.ecu)+'</td><td>'+cmpCell(r.svc)+'</td><td>'+cmpCell(r.tpms)+'</td><td>'+cmpCell(r.batt)+'</td><td class="pr">'+r.price+'</td>'+
+      '<td><a class="btn sm" target="_blank" rel="sponsored noopener" href="'+SITE+r.slug+TRACK+'">View</a></td></tr>';
+  }).join("");
+}
+cmpRender("all");
 
 document.getElementById("y").textContent = new Date().getFullYear();
 </script>
