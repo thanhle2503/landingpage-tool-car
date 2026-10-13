@@ -279,7 +279,7 @@ const PRESETS = [
 ];
 
 // Store items that are not real products (payment links etc.) – never shown
-const EXCLUDE = /payment|price difference|order adjustment|usb.*(video|hd)/i;
+const EXCLUDE = /payment|price difference|order adjustment|\bfee\b|usb.*(video|hd)/i;
 
 // Shown if the live product list cannot load
 const FALLBACK = [
