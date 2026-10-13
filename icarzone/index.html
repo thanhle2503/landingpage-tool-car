@@ -68,6 +68,8 @@ h2{font-size:clamp(26px,3.6vw,36px);margin-bottom:8px;text-align:center}
 .body ul{list-style:none;padding:0;color:var(--mut);font-size:14px;flex:1}
 .body li:before{content:"✓ ";color:var(--a);font-weight:800}
 .body .btn{text-align:center;margin-top:10px}
+.body .pr{font-size:20px;font-weight:800}
+.body .pr s{font-size:14px;color:var(--mut);font-weight:600;margin-left:4px}
 .revs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
 .rev{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:10px}
 .stars{color:var(--a);letter-spacing:2px;font-size:18px}
@@ -243,13 +245,19 @@ const TRACK = "?bg_ref=kPBnJ0eegC&utm_source=Thanh%20le%20%2F%20boythanh2302%40g
 const SITE = "https://www.icarzone.com/products/";
 const IMG = "https://www.icarzone.com/cdn/shop/files/";
 
+// Live prices load from here; products added to the store later show up automatically
+const STORE_JSON = "https://www.icarzone.com/products.json?limit=250&currency=USD";
+// Store items that are not real products (payment links, fees, gift cards) – never shown
+const EXCLUDE = /payment|price difference|order adjustment|\bfee\b|gift card|shipping protection/i;
+
 // CATEGORIES (order = display order). Each product uses cat:"id".
 const CATS = [
  { id:"ju", icon:"🏆", title:"JU Series · Flagship Scanners", desc:"10-inch tablets, full-system diagnostics, ECU coding and TPMS for serious shops." },
  { id:"ur", icon:"📟", title:"UR Series · Bidirectional Scan Tools", desc:"Dealer-level bidirectional control and ECU coding at every budget." },
  { id:"ma", icon:"🔋", title:"MA Series · DIY Battery & OBD2 Testers", desc:"Compact, plug-and-play testers for car owners and DIYers." },
  { id:"hd", icon:"🚛", title:"HD Series · Heavy Duty", desc:"Truck diagnostics and software extensions." },
- { id:"ad", icon:"🔌", title:"OBD-I Adapters · Older Vehicles", desc:"Connect classic cars and vans with non-16-pin diagnostic ports." }
+ { id:"ad", icon:"🔌", title:"OBD-I Adapters · Older Vehicles", desc:"Connect classic cars and vans with non-16-pin diagnostic ports." },
+ { id:"more", icon:"✨", title:"New Arrivals · Just Added", desc:"Recently added on the official iCARZONE store." }
 ];
 
 // PRODUCTS. To hide one: delete its block. To add an image: fill img:IMG+"file.png". To add one: copy a block.
@@ -267,6 +275,10 @@ const PRODUCTS = [
    img: IMG+"UR1000_98d8c2e5-ad55-4e4e-aa5f-d69eff4074de.png?v=1781774126&width=900",
    points:["7\" Android touchscreen, full-system access, 58 brands","OE-level ECU coding, TPMS programming, CAN-FD and DoIP ready","50 service functions, lifetime Wi-Fi updates"],
    link: SITE+"icarzone-ur1000"+TRACK },
+ { cat:"ur", kind:"Full-System UR", name:"UR800 Full-System Bidirectional Scan Tool with ECU Coding", badge:"New", emoji:"📟",
+   img: IMG+"UR800_18febbb5-8d19-44b2-91df-3b5bd2ce194b.png?v=1781774092&width=900",
+   points:["5\" touchscreen, full-system diagnostics, 58+ brands","Bidirectional control, OE-level ECU coding incl. BMW & VAG","49+ service resets, CAN-FD, AutoVIN, Bluetooth OBD2"],
+   link: SITE+"icarzone-ur800"+TRACK },
  { cat:"ur", kind:"Smart UR · 4 systems", name:"UR600 Bidirectional Scan Tool with ECU Coding & CAN-FD", badge:"$199.99", emoji:"📱",
    img: IMG+"UR600_77bc8748-6a12-46df-b065-0ffbd3d40c44.png?v=1781774052&width=900",
    points:["Engine, ABS, airbag and transmission diagnostics","5\" Android touchscreen, CAN-FD, AutoVIN","50 service functions, 58 brands"],
@@ -296,6 +308,11 @@ const PRODUCTS = [
    img: IMG+"MA200Plus_47694da3-345b-451a-9573-7c7700a3e8a8.png?v=1781593936&width=900",
    points:["Full-system diagnostics beyond engine, ABS, SRS and transmission","Bidirectional control, 6 service resets, CAN-FD, AutoVIN","2.8\" TFT screen, lifetime free updates, 1-year warranty"],
    link: SITE+"icarzone-ma200-plus"+TRACK },
+
+ { cat:"ma", kind:"Code Reader", name:"MA100 Plug-and-Play OBD2 Code Reader with Check Engine Light Reset", badge:"", emoji:"🔎",
+   img: IMG+"MA100_59019b79-a18a-4828-9dcf-363f260a28c6.png?v=1781593816&width=900",
+   points:["Read & clear codes, turn off the check engine light","I/M readiness check before a smog inspection","No app, no Bluetooth: plug in and read, all OBD2 cars 1996+"],
+   link: SITE+"icarzone-ma100"+TRACK },
 
  { cat:"hd", kind:"Truck Scanner", name:"HD S700 Heavy-Duty Truck Diagnostic Scan Tool with DPF & J1939", badge:"From $392.99", emoji:"🚛",
    img: IMG+"HDS700.png?v=1781773921&width=900",
@@ -333,6 +350,7 @@ const COMPARE = [
  { cat:"ju", name:"JU2000 MAX", sub:"Workshop kit", screen:'10"', bidi:true, ecu:true, svc:"", tpms:true, batt:false, price:"$1,186.99", slug:"ju2000-max" },
  { cat:"ju", name:"JU2000", sub:"All-system scanner", screen:"", bidi:true, ecu:true, svc:"50", tpms:"", batt:false, price:"$589.99", slug:"icarzone-ju2000" },
  { cat:"ur", name:"UR1000", sub:"Flagship UR", screen:'7"', bidi:true, ecu:true, svc:"50", tpms:true, batt:false, price:"$329.99", slug:"icarzone-ur1000" },
+ { cat:"ur", name:"UR800", sub:"Full-system", screen:'5"', bidi:true, ecu:true, svc:"49+", tpms:"", batt:false, price:"$239.99", slug:"icarzone-ur800" },
  { cat:"ur", name:"UR600", sub:"4 systems", screen:'5"', bidi:true, ecu:true, svc:"50", tpms:"", batt:false, price:"$199.99", slug:"icarzone-ur600" },
  { cat:"ur", name:"UR400", sub:"German cars", screen:'5"', bidi:true, ecu:true, svc:"48", tpms:"", batt:false, price:"$189.99", slug:"icarzone-ur400" },
  { cat:"ur", name:"UR300", sub:"All-system", screen:'4.3"', bidi:true, ecu:"", svc:"48", tpms:"", batt:false, price:"$269.99", slug:"icarzone-ur300" },
@@ -340,15 +358,18 @@ const COMPARE = [
  { cat:"ma", name:"MA500", sub:"Battery tester", screen:"", bidi:false, ecu:false, svc:"", tpms:"", batt:true, price:"From $32.99", slug:"icarzone-ma500" },
  { cat:"ma", name:"MA200 V6", sub:"OBD2 scanner", screen:'2.8"', bidi:true, ecu:"", svc:"6 resets", tpms:"", batt:false, price:"$99.99", slug:"icarzone-ma200-v6" },
  { cat:"ma", name:"MA200 Plus", sub:"Multi-system OBD2", screen:'2.8"', bidi:true, ecu:"", svc:"6 resets", tpms:"", batt:false, price:"$144.99", slug:"icarzone-ma200-plus" },
+ { cat:"ma", name:"MA100", sub:"Code reader", screen:"", bidi:false, ecu:false, svc:"", tpms:"", batt:false, price:"$22.99", slug:"icarzone-ma100" },
  { cat:"hd", name:"HD S700", sub:"Heavy-duty trucks", screen:'5"', bidi:"", ecu:"", svc:"8 resets", tpms:"", batt:false, price:"From $392.99", slug:"icarzone-hd-s700" }
 ];
 
 // HEAD-TO-HEAD: quick match-ups (use the slug of two rows from COMPARE). The first one loads by default.
 const H2H_PRESETS = [
  { label:"Best overall", a:"icarzone-ur1000", b:"icarzone-ju2000" },
+ { label:"Best value", a:"icarzone-ur800", b:"icarzone-ur1000" },
  { label:"Mid-range", a:"icarzone-ur600", b:"icarzone-ur400" },
  { label:"Pro kit vs scanner", a:"ju2000-max", b:"icarzone-ju2000" },
  { label:"Budget DIY", a:"icarzone-ma200-v6", b:"icarzone-ma200-plus" },
+ { label:"Code readers", a:"icarzone-ma100", b:"icarzone-ma200-v6" },
  { label:"Battery testers", a:"ma900", b:"icarzone-ma500" }
 ];
 /* ===================== END OF SETTINGS ===================== */
@@ -357,25 +378,37 @@ document.querySelectorAll("[data-main]").forEach(function(el){
   el.href = MAIN_LINK; el.target = "_blank"; el.rel = "sponsored noopener";
 });
 
+function slugOf(link){ var m=String(link).match(/\/products\/([^?#]+)/); return m?m[1]:""; }
+function isPriceText(s){ return /^(from\s+)?\$/i.test(String(s||"")); }
+// Starting prices come from the comparison table until live prices load from the store
+PRODUCTS.forEach(function(p){
+  var r=COMPARE.filter(function(x){return x.slug===slugOf(p.link)})[0];
+  if(!p.priceText) p.priceText = r ? r.price : (isPriceText(p.badge) ? p.badge : "");
+  if(isPriceText(p.badge)) p.badge="";
+});
+
 function card(p){
   return '<a class="card" target="_blank" rel="sponsored noopener" href="'+p.link+'">'+
     '<div class="thumb'+(p.img?'':' noimg')+'">'+(p.badge?'<span class="badge">'+p.badge+'</span>':'')+p.emoji+
     (p.img?'<img loading="lazy" alt="'+p.name+'" src="'+p.img+'" onerror="this.remove()">':'')+'</div>'+
     '<div class="body"><span class="kind">'+p.kind+'</span><h4>'+p.name+'</h4>'+
     '<ul>'+p.points.map(function(t){return '<li>'+t+'</li>'}).join("")+'</ul>'+
+    (p.priceText?'<div class="pr">'+p.priceText+(p.wasText?' <s>'+p.wasText+'</s>':'')+'</div>':'')+
     '<span class="btn sm">Learn more</span></div></a>';
 }
 
-document.getElementById("pills").innerHTML = CATS.map(function(c){
-  return '<a href="#cat-'+c.id+'">'+c.icon+' '+c.title.split(" · ")[0]+'</a>';
-}).join("");
-
-document.getElementById("cats").innerHTML = CATS.map(function(c){
-  var items = PRODUCTS.filter(function(p){return p.cat===c.id});
-  if(!items.length) return "";
-  return '<div class="cat" id="cat-'+c.id+'"><h3 class="ct">'+c.icon+' '+c.title+'</h3><p class="cd">'+c.desc+'</p>'+
-    '<div class="grid">'+items.map(card).join("")+'</div></div>';
-}).join("");
+function renderCats(){
+  var used=CATS.filter(function(c){ return PRODUCTS.some(function(p){return p.cat===c.id}); });
+  document.getElementById("pills").innerHTML = used.map(function(c){
+    return '<a href="#cat-'+c.id+'">'+c.icon+' '+c.title.split(" · ")[0]+'</a>';
+  }).join("");
+  document.getElementById("cats").innerHTML = used.map(function(c){
+    var items = PRODUCTS.filter(function(p){return p.cat===c.id});
+    return '<div class="cat" id="cat-'+c.id+'"><h3 class="ct">'+c.icon+' '+c.title+'</h3><p class="cd">'+c.desc+'</p>'+
+      '<div class="grid">'+items.map(card).join("")+'</div></div>';
+  }).join("");
+}
+renderCats();
 
 document.getElementById("revs").innerHTML = REVIEWS.map(function(r){
   return '<div class="rev"><div class="stars">'+"★".repeat(r.stars)+'</div><q>'+r.text+'</q><small><b>'+r.who+'</b> · '+r.prod+'</small></div>';
@@ -454,6 +487,57 @@ function h2hPick(e){ var s=e.target; if(!s.hasAttribute("data-side")) return; hs
 document.getElementById("side0").onchange=h2hPick;
 document.getElementById("side1").onchange=h2hPick;
 h2hAll();
+
+/* ---------- live prices & new products from the iCARZONE store ---------- */
+function money(n){ return "$"+n.toLocaleString("en-US",{minimumFractionDigits:Number.isInteger(n)?0:2,maximumFractionDigits:2}); }
+function catFor(t){
+  t=t.replace(/^icarzone\s+/i,"");
+  if(/^JU/i.test(t)) return "ju"; if(/^UR/i.test(t)) return "ur"; if(/^MA/i.test(t)) return "ma";
+  if(/^HD|truck|heavy/i.test(t)) return "hd"; if(/adapter/i.test(t)) return "ad"; return "more";
+}
+function setLive(p,L){
+  p.priceText=(L.hi>L.lo?"From ":"")+money(L.lo);
+  p.wasText=L.was>L.lo?money(L.was):"";
+  if(L.was>L.lo) p.badge="Save "+Math.round((1-L.lo/L.was)*100)+"%";
+  else if(/^Save /.test(p.badge||"")) p.badge="";
+}
+function applyLive(list){
+  var live={};
+  list.forEach(function(p){
+    var v=p.variants||[], pr=v.map(function(x){return +x.price}).filter(function(n){return n>0});
+    if(!pr.length || EXCLUDE.test(p.title)) return;
+    live[p.handle]={ lo:Math.min.apply(null,pr), hi:Math.max.apply(null,pr),
+      was:Math.max.apply(null,[0].concat(v.map(function(x){return +(x.compare_at_price||0)}))),
+      title:p.title, img:(p.images&&p.images[0]&&p.images[0].src)||"" };
+  });
+  if(!Object.keys(live).length) return;
+  // drop products that are no longer on the store, so no link goes to a dead page
+  for(var i=PRODUCTS.length-1;i>=0;i--){ if(!live[slugOf(PRODUCTS[i].link)]) PRODUCTS.splice(i,1); }
+  for(i=COMPARE.length-1;i>=0;i--){ if(!live[COMPARE[i].slug]) COMPARE.splice(i,1); }
+  PRODUCTS.forEach(function(p){ setLive(p, live[slugOf(p.link)]); });
+  COMPARE.forEach(function(r){ var L=live[r.slug]; r.price=(L.hi>L.lo?"From ":"")+money(L.lo); });
+  // products added to the store after this page was written appear automatically
+  Object.keys(live).forEach(function(h){
+    if(PRODUCTS.some(function(p){return slugOf(p.link)===h})) return;
+    var L=live[h], cat=catFor(L.title);
+    var p={ cat:cat, kind:"New on iCARZONE", name:L.title, badge:"New", emoji:"🔧",
+      img:L.img?(L.img.indexOf("//")===0?"https:":"")+L.img+(L.img.indexOf("?")>-1?"&":"?")+"width=900":"",
+      points:["Newly added to the official iCARZONE store","Full specs and reviews on the product page"], link:SITE+h+TRACK };
+    setLive(p,L); if(!p.wasText) p.badge="New";
+    PRODUCTS.push(p);
+    COMPARE.push({ cat:cat, name:L.title.replace(/^icarzone\s+/i,"").split(" ")[0], sub:"New model", screen:"", bidi:"", ecu:"", svc:"", tpms:"", batt:"", price:p.priceText, slug:h });
+  });
+  renderCats();
+  cmpRender("all");
+  H2H = COMPARE.map(function(r){ var p=prodFor(r.slug); return { r:r, p:p, url:SITE+r.slug+TRACK, name:p?p.name:r.name, img:p?p.img:"" }; });
+  BYS = {}; H2H.forEach(function(x){ BYS[x.r.slug]=x; });
+  if(!BYS[hsel[0]]||!BYS[hsel[1]]){ var p0=okH2H()[0]; hsel = p0 ? [p0.a,p0.b] : [H2H[0].r.slug, H2H[1].r.slug]; }
+  document.getElementById("presets").innerHTML = okH2H().map(function(p,i){ return '<button type="button" data-i="'+i+'">'+p.label+'</button>'; }).join("");
+  h2hAll();
+}
+fetch(STORE_JSON).then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+  .then(function(j){ applyLive(j.products||[]); })
+  .catch(function(){ /* keep the built-in list and prices */ });
 
 document.getElementById("y").textContent = new Date().getFullYear();
 </script>
