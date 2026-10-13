@@ -200,7 +200,7 @@ footer a.pp{text-decoration:underline;font-weight:600;color:var(--ink)}
   <div class="more"><button class="btn ghost" type="button" id="more" hidden>Show more</button></div>
 </div></section>
 
-<section><div class="wrap">
+<section id="faq"><div class="wrap">
   <h2>Before you order</h2>
   <p class="sub">Quick answers based on what Youducar states on its store.</p>
   <div class="faq">
@@ -526,6 +526,21 @@ function fallbackData(){
   return FALLBACK.map(function(r){ return { handle:r[0], title:r[1], product_type:r[5], images:[{src:FALLBACK_IMG+r[4]}],
     variants:[{price:String(r[2]), compare_at_price:r[3]?String(r[3]):null, available:true, title:""}] }; });
 }
+/* Links like /carplay-screen/#make-accessories or #make-toyota open the catalog filtered to that group */
+function slugMake(m){ return String(m).toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""); }
+var wantMake = "";
+function applyHash(){
+  var m=location.hash.match(/^#make-([a-z0-9-]+)$/i); if(!m) return;
+  wantMake=m[1].toLowerCase();
+  var found=ALL.filter(function(p){return slugMake(p.make)===wantMake})[0];
+  if(!found) return;
+  view.make=found.make; view.shown=PAGE; renderMakes(); renderGrid();
+  $("shop").scrollIntoView();
+}
+window.addEventListener("hashchange", applyHash);
+var _setData=setData;
+setData=function(products){ _setData(products); if(wantMake||/^#make-/i.test(location.hash)) applyHash(); };
+
 function loadPage(n){ return fetch(STORE+"/products.json?limit=250&currency=USD&page="+n).then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); }).then(function(j){ return j.products||[]; }); }
 setData(fallbackData());
 $("state").style.display="block"; $("state").textContent="Loading the latest models and prices…";
