@@ -67,8 +67,30 @@ h2{font-size:clamp(26px,3.6vw,36px);margin-bottom:8px;text-align:center}
 footer{border-top:1px solid var(--line);padding:30px 0;color:var(--mut);font-size:13px;margin-top:24px}
 footer p{margin-bottom:8px}
 footer a.pp{text-decoration:underline;font-weight:600;color:var(--ink)}
-@media(max-width:860px){nav.top a:not(.on){display:none}}
 @media(max-width:760px){.how{grid-template-columns:1fr}.brands{grid-template-columns:1fr}}
+/* mobile: brand switcher + clear section bands */
+nav.top a b{display:none}
+section[id],.cat{scroll-margin-top:72px}
+@media(max-width:860px){
+  header .wrap{flex-wrap:wrap;height:auto;padding-top:10px;row-gap:8px}
+  header .wrap>.logo{flex:1}
+  nav.top{order:3;width:100%;gap:6px;padding-bottom:10px;overflow-x:auto}
+  nav.top a,nav.top a:not(.on){display:flex;flex-direction:column;justify-content:center;align-items:center;flex:1;min-width:0;text-align:center;white-space:nowrap;line-height:1.2;padding:7px 8px;background:var(--card);border:1px solid var(--line);border-radius:14px;color:var(--ink)}
+  nav.top a.on{background:var(--a);border-color:var(--a);color:#fff}
+  nav.top a b{display:block;font-size:14px}
+  nav.top a b+span{font-size:11px;font-weight:600;opacity:.75}
+  nav.top a:first-child{flex:0 0 auto;padding:7px 12px}
+  section[id],.cat{scroll-margin-top:130px}
+}
+@media(max-width:760px){
+  .collage{height:240px}
+  main>section{padding:36px 0}
+  main>section:not(.hero){border-top:1px solid var(--line)}
+  main>section:nth-of-type(even){background:#12151c}
+  main>section:not(.hero) h2{padding-bottom:12px;position:relative}
+  main>section:not(.hero) h2:after{content:"";position:absolute;left:50%;bottom:0;width:44px;height:3px;margin-left:-22px;border-radius:3px;background:var(--a)}
+  .sub{margin-bottom:24px}
+}
 </style>
 </head>
 <body>
@@ -131,8 +153,8 @@ const BRANDS = [
 ];
 /* ===================== END OF SETTINGS ===================== */
 
-document.getElementById("nav").innerHTML = '<a class="on" href="./">All brands</a>' +
-  BRANDS.map(function(b){ return '<a href="'+b.page+'">'+b.nav+'</a>'; }).join("");
+document.getElementById("nav").innerHTML = '<a class="on" href="./"><span>All brands</span></a>' +
+  BRANDS.map(function(b){ return '<a href="'+b.page+'"><b>'+b.label+'</b><span>'+b.nav+'</span></a>'; }).join("");
 
 document.getElementById("needs").innerHTML = BRANDS.map(function(b){
   return '<a href="'+b.page+'">'+b.need+'</a>';
