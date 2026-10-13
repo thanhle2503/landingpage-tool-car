@@ -110,7 +110,6 @@ nav.top{display:flex;gap:4px;font-size:14px;font-weight:600}
 nav.top a{padding:6px 12px;border-radius:999px;color:var(--mut)}
 nav.top a:hover{color:var(--ink)}
 nav.top a.on{color:var(--ink);background:var(--card);border:1px solid var(--line)}
-@media(max-width:860px){nav.top a:not(.on){display:none}}
 
 /* head-to-head */
 .presets{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:20px}
@@ -143,6 +142,29 @@ table.h2ht .n{color:var(--mut)}
 .allspecs[open] summary{margin-bottom:6px}
 .allspecs .cmp-panel{text-align:left}
 @media(max-width:760px){.h2h{grid-template-columns:1fr 1fr}.vs{display:none}.pc-price{font-size:20px}.pc-name{font-size:14px}}
+/* mobile: brand switcher + clear section bands */
+nav.top a b{display:none}
+section[id],.cat{scroll-margin-top:72px}
+@media(max-width:860px){
+  header .wrap{flex-wrap:wrap;height:auto;padding-top:10px;row-gap:8px}
+  header .wrap>.logo{flex:1}
+  nav.top{order:3;width:100%;gap:6px;padding-bottom:10px;overflow-x:auto}
+  nav.top a,nav.top a:not(.on){display:flex;flex-direction:column;justify-content:center;align-items:center;flex:1;min-width:0;text-align:center;white-space:nowrap;line-height:1.2;padding:7px 8px;background:var(--card);border:1px solid var(--line);border-radius:14px;color:var(--ink)}
+  nav.top a.on{background:var(--a);border-color:var(--a);color:#fff}
+  nav.top a b{display:block;font-size:14px}
+  nav.top a b+span{font-size:11px;font-weight:600;opacity:.75}
+  nav.top a:first-child{flex:0 0 auto;padding:7px 12px}
+  section[id],.cat{scroll-margin-top:130px}
+}
+@media(max-width:760px){
+  .collage{height:240px}
+  main>section{padding:36px 0}
+  main>section:not(.hero){border-top:1px solid var(--line)}
+  main>section:nth-of-type(even){background:#12151c}
+  main>section:not(.hero) h2{padding-bottom:12px;position:relative}
+  main>section:not(.hero) h2:after{content:"";position:absolute;left:50%;bottom:0;width:44px;height:3px;margin-left:-22px;border-radius:3px;background:var(--a)}
+  .sub{margin-bottom:24px}
+}
 </style>
 </head>
 <body>
@@ -150,9 +172,9 @@ table.h2ht .n{color:var(--mut)}
 <header><div class="wrap">
   <a class="logo" href="../">Tool<span>.Cars</span></a>
   <nav class="top">
-    <a href="../">All brands</a>
-    <a class="on" href="./">Diagnostic tools</a>
-    <a href="../carplay-screen/">CarPlay screens</a>
+    <a href="../"><span>All brands</span></a>
+    <a class="on" href="./"><b>iCARZONE</b><span>Diagnostic tools</span></a>
+    <a href="../carplay-screen/"><b>Youducar</b><span>CarPlay screens</span></a>
   </nav>
   <a class="btn sm" data-main href="#">Shop iCARZONE</a>
 </div></header>
