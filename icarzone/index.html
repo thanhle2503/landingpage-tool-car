@@ -284,6 +284,7 @@ const CATS = [
 ];
 
 // PRODUCTS. To hide one: delete its block. To add an image: fill img:IMG+"file.png". To add one: copy a block.
+// page:"folder/" = the card opens our own review page (in this folder) instead of the store.
 const PRODUCTS = [
  { cat:"ju", kind:"Workshop Kit", name:"JU2000 MAX All-in-One Diagnostic & TPMS Kit", badge:"4 TPMS sensors incl.", emoji:"🧰",
    img: IMG+"JU2000MAX_19020c62-5f51-4d31-a787-17b494b93b37.png?v=1781593755&width=900",
@@ -318,7 +319,7 @@ const PRODUCTS = [
  { cat:"ma", kind:"2-in-1 · OBD2 + Battery", name:"MA900 OBD2 Scanner & 12V/24V Battery Tester", badge:"Save 30%", emoji:"🔋",
    img: IMG+"MA900_2186dd7e-3f91-436d-9f80-54f632fb4097.png?v=1781594039&width=900",
    points:["Full OBDII + Check Engine Light reset","Battery SOH, SOC, resistance and ripple test","Plug & play, 12V and 24V, 5 languages"],
-   link: SITE+"ma900"+TRACK },
+   link: SITE+"ma900"+TRACK, page:"ma900/" },
  { cat:"ma", kind:"Battery Tester", name:"MA500 12V/24V Battery & Charging System Tester", badge:"From $32.99", emoji:"⚡",
    img: IMG+"MA500_60911904-ba51-485c-b36a-96fdb6ef0dc5.png?v=1781594009&width=900",
    points:["Cranking and alternator charging tests","SOH, SOC, resistance, ripple voltage in <5 seconds","Test in-vehicle, no sparks, no battery to charge"],
@@ -411,7 +412,7 @@ PRODUCTS.forEach(function(p){
 });
 
 function card(p){
-  return '<a class="card" target="_blank" rel="sponsored noopener" href="'+p.link+'">'+
+  return (p.page?'<a class="card" href="'+p.page+'">':'<a class="card" target="_blank" rel="sponsored noopener" href="'+p.link+'">')+
     '<div class="thumb'+(p.img?'':' noimg')+'">'+(p.badge?'<span class="badge">'+p.badge+'</span>':'')+p.emoji+
     (p.img?'<img loading="lazy" alt="'+p.name+'" src="'+p.img+'" onerror="this.remove()">':'')+'</div>'+
     '<div class="body"><span class="kind">'+p.kind+'</span><h4>'+p.name+'</h4>'+
