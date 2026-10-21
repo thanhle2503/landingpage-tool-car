@@ -14,124 +14,175 @@
   gtag('js', new Date());
   gtag('config', 'AW-18429283112');
 </script>
-<script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.__motion)document.documentElement.classList.remove("js")},2500)</script>
+<script>try{if(sessionStorage.getItem("tc-transit")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("tc-arrive");setTimeout(function(){document.documentElement.classList.remove("tc-arrive")},3000)}}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <style>
-/* Layout: workshop catalog. Left-aligned hero with a "what do you need" picker,
-   two brand bays, a plain three-column how-it-works. Dark graphite, one safety-orange accent. */
-:root{
-  --bg:#101113; --panel:#17191c; --panel-2:#1d2024; --line:#2b2e33;
-  --ink:#eceae6; --mut:#a09c96; --a:#ff6b1a; --a-d:#e85a0c; --a-ink:#ff8d4d;
-  --f-display:"Barlow Condensed","Arial Narrow",Impact,sans-serif;
-  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-  --f-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
-  color-scheme:dark;
-}
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth}
-body{font-family:var(--f-body);font-size:16px;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+body{font-size:16px;line-height:1.6}
 a{color:inherit;text-decoration:none}
-a:focus-visible{outline:2px solid var(--a);outline-offset:3px}
-.wrap{max-width:1140px;margin:0 auto;padding-inline:24px}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:24px}
 
-/* header */
-header{position:sticky;top:0;background:rgba(16,17,19,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:5}
-header .wrap{display:flex;justify-content:space-between;align-items:center;height:60px;gap:12px}
-.logo{font-family:var(--f-display);font-weight:700;font-size:26px;letter-spacing:.3px;text-transform:uppercase}
-.logo span{color:var(--a)}
-nav.top{display:flex;gap:2px;font-size:14px;font-weight:500}
-nav.top a{padding:6px 12px;border-radius:6px;color:var(--mut)}
-nav.top a:hover{color:var(--ink);background:var(--panel)}
-nav.top a.on{color:var(--ink);box-shadow:inset 0 -2px 0 var(--a);border-radius:0}
+header{position:sticky;top:0;z-index:20}
+header .wrap{display:flex;justify-content:space-between;align-items:center;height:62px;gap:12px}
+nav.top{display:flex;gap:4px;font-size:14px}
+nav.top a{padding:6px 12px}
+nav.top a b{display:none}
 
-/* buttons */
-.btn{display:inline-flex;align-items:center;gap:8px;background:var(--a);color:#fff;padding:11px 20px;border-radius:6px;font-weight:600;font-size:15px;transition:background .2s}
-.btn:hover{background:var(--a-d)}
-.btn.sm{padding:8px 14px;font-size:14px}
+/* ---------- hero: headline, then the broken car on its own stage ---------- */
+.intro{padding-block:44px 0}
+.intro .wrap{display:grid;grid-template-columns:1.3fr .7fr;gap:16px 56px;align-items:end}
+.intro h1{font-size:clamp(48px,6.2vw,86px);max-width:16ch}
+.intro p{color:var(--mut);font-size:18px;max-width:38ch;padding-bottom:8px}
+.intro p b{color:var(--ink);font-weight:600}
 
-/* hero */
-.hero{padding-block:72px 64px;border-bottom:1px solid var(--line)}
-.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center}
-.tag{font-family:var(--f-mono);font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--a-ink)}
-h1,h2,h3{font-family:var(--f-display);font-weight:700;text-transform:uppercase;letter-spacing:.2px;text-wrap:balance}
-h1{font-size:clamp(44px,6.4vw,78px);line-height:.95;margin:18px 0 22px;max-width:14ch}
-h1 em{font-style:normal;color:var(--a)}
-.hero p{color:var(--mut);font-size:18px;max-width:46ch}
+.stage{position:relative;height:clamp(440px,calc(100vh - 290px),660px);overflow-x:clip}
+.stage .car-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity .8s}
+.stage.ready .car-canvas{opacity:1}
+.stage .wait{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);color:var(--mut);font-size:14px;transition:opacity .4s}
+.stage.ready .wait{opacity:0}
+.stage-note{display:flex;justify-content:center;gap:8px;align-items:center;color:var(--mut);font-size:14px;padding:4px 16px 0;text-align:center}
+.stage-note i{width:8px;height:8px;border-radius:50%;background:var(--fault);box-shadow:0 0 0 4px rgba(227,36,27,.14);flex:none}
 
-.needs{display:flex;flex-direction:column;border-top:1px solid var(--line)}
-.needs-h{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);padding:0 0 10px}
-.needs a{display:grid;grid-template-columns:1fr auto;gap:2px 16px;align-items:center;padding:18px 4px;border-bottom:1px solid var(--line);transition:padding .2s,background .2s}
-.needs a:hover{background:var(--panel);padding-inline:14px}
-.needs .q{font-size:19px;font-weight:600}
-.needs .m{grid-column:1;font-family:var(--f-mono);font-size:13px;color:var(--mut)}
-.needs .go{grid-row:1/3;grid-column:2;color:var(--a);font-size:22px;transition:transform .2s}
-.needs a:hover .go{transform:translateX(4px)}
+#wires{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;z-index:2}
+#wires .halo{fill:none;stroke:#fff;stroke-width:4;stroke-linecap:round;opacity:0;transition:opacity .25s}
+#wires .w{fill:none;stroke:#9a9893;stroke-width:1;stroke-linecap:round;opacity:.6;transition:stroke .25s,stroke-width .25s,opacity .25s}
+#wires .flow{fill:none;stroke:var(--wc,var(--a));stroke-width:2.4;stroke-dasharray:6 10;opacity:0}
+#wires .hit{fill:none;stroke:transparent;stroke-width:22;pointer-events:stroke;cursor:pointer}
+#wires .dot{fill:var(--fault);stroke:#fff;stroke-width:2}
+#wires .ring{fill:none;stroke:#fff;stroke-width:2;transform-box:fill-box;transform-origin:center;animation:ping 1.6s ease-out infinite}
+#wires .end{fill:#fff;stroke:#9a9893;stroke-width:1}
+#wires g.on .w{stroke:var(--wc,var(--a));opacity:1;stroke-width:2}
+#wires g.k-screen{--wc:var(--elec)}
+#wires g.on .halo{opacity:.85}
+#wires g.on .flow{opacity:1;animation:flow .6s linear infinite}
+#wires g.on .end{stroke:var(--wc,var(--a));fill:var(--wc,var(--a))}
+@keyframes ping{from{transform:scale(.6);opacity:.9}to{transform:scale(2.6);opacity:0}}
+@keyframes flow{to{stroke-dashoffset:-32}}
 
-/* sections */
-section{padding-block:72px}
-.sec-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:32px;flex-wrap:wrap}
-h2{font-size:clamp(32px,4vw,46px);line-height:1}
-.sub{color:var(--mut);max-width:52ch}
+/* product frames around the car */
+.pc{position:absolute;z-index:3;width:256px;background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:12px;box-shadow:0 14px 30px -20px rgba(40,30,20,.45);cursor:pointer;user-select:none;transition:border-color .25s,box-shadow .25s}
+.pc .img{height:112px;border-radius:9px;background:#f2f1ee center/contain no-repeat;margin-bottom:10px}
+.pc .img.cover{background-size:cover}
+.pc .fault{display:flex;align-items:center;gap:6px;font:500 12px/1 var(--f-mono);color:var(--fault);margin-bottom:6px}
+.pc .fault i{width:7px;height:7px;border-radius:50%;background:var(--fault);box-shadow:0 0 0 3px rgba(227,36,27,.15)}
+.pc h3{margin:2px 0 10px;font:600 16px/1.25 var(--f-body);letter-spacing:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.5em}
+.pc .go{display:inline-flex;align-items:center;padding:8px 14px;border-radius:999px;background:var(--ink);color:#fff;font-weight:600;font-size:13px;transition:background .2s}
+.pc .go:hover{background:var(--a-d)}
+.pc[hidden]{display:none}
+.pc.on{border-color:var(--a);box-shadow:0 0 0 4px rgba(255,107,26,.18),0 0 34px rgba(255,107,26,.42),0 14px 30px -20px rgba(40,30,20,.45)}
+#pc-screen.on{border-color:var(--elec);box-shadow:0 0 0 4px rgba(30,136,255,.18),0 0 34px rgba(30,136,255,.42),0 14px 30px -20px rgba(40,30,20,.45)}
+.pc.soon{border-style:dashed;background:#fbfaf8}
+.pc.soon .img{display:grid;place-items:center;color:#b3b0aa}
+.pc.soon .pill{display:inline-block;padding:7px 12px;border-radius:999px;border:1px dashed #c9c6c0;color:var(--mut);font-weight:600;font-size:13px}
+#pc-screen{left:max(20px,3vw);top:6%}
+#pc-engine{right:max(20px,3vw);top:6%}
+#pc-tyre{left:max(20px,5vw);bottom:6%}
 
-/* brands */
-.brands{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
-.brand{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .25s}
-.brand:hover{border-color:#4a4038}
-.brand .pic{aspect-ratio:16/9;max-width:100%;background:#f4f3f1;position:relative;overflow:hidden}
-.brand .pic img{position:absolute;inset:0;width:100%;height:100%;transition:transform .5s}
-.brand:hover .pic img{transform:scale(1.03)}
+/* ---------- symptom chart ---------- */
+section{padding-block:88px}
+.head{display:grid;grid-template-columns:1fr 1fr;gap:16px 56px;align-items:end;margin-bottom:36px}
+.head p{color:var(--mut);max-width:48ch}
+.chart{border-top:1.5px solid var(--ink)}
+.row{display:grid;grid-template-columns:52px minmax(0,1.3fr) minmax(0,.8fr) auto;gap:8px 24px;align-items:center;padding:20px 4px;border-bottom:1px solid var(--line);transition:background .2s}
+a.row:hover{background:var(--card)}
+.lamp{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:#fff;background:var(--c,var(--fault))}
+.lamp svg{width:22px;height:22px}
+.row h3{font:600 19px/1.3 var(--f-body);letter-spacing:0}
+.row .why{color:var(--mut);font-size:15px}
+.row .tool{font-weight:600}
+.row .tool small{display:block;color:var(--mut);font-weight:400;font-size:14px}
+.row .see{font-weight:600;font-size:14px;color:var(--a-ink);white-space:nowrap}
+a.row:hover .see{text-decoration:underline}
+.row.off{opacity:.62}
+.row.off .see{color:var(--mut);font-weight:500}
+
+/* ---------- brands ---------- */
+.brands-sec{background:var(--card);border-block:1px solid var(--line)}
+.brands{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+.brand{display:flex;flex-direction:column;border-radius:16px;overflow:hidden;background:var(--bg);border:1px solid var(--line);transition:border-color .25s}
+.brand:hover{border-color:var(--a)}
+.brand .pic{aspect-ratio:16/9;background:#fff;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.brand .pic img{position:absolute;inset:0;width:100%;height:100%;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.brand:hover .pic img{transform:scale(1.035)}
 .brand .body{padding:24px 26px 26px;display:flex;flex-direction:column;gap:12px;flex:1}
-.brand .kind{font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--a-ink)}
-.brand .kind b{color:var(--ink);font-weight:500}
-.brand h3{font-size:32px;line-height:1.02}
+.brand .kind{font-size:14px;color:var(--mut)}
+.brand .kind b{color:var(--ink);font-weight:600}
+.brand h3{font-size:34px;line-height:1}
 .brand p{color:var(--mut);font-size:15.5px}
-.brand ul{list-style:none;padding:0;font-size:15px;flex:1;display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--line);padding-top:14px}
+.brand ul{list-style:none;padding:12px 0 0;font-size:15px;flex:1;display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--line)}
 .brand li{padding-left:18px;position:relative}
-.brand li:before{content:"";position:absolute;left:0;top:.7em;width:8px;height:2px;background:var(--a)}
-.brand .meta{display:flex;flex-direction:column;align-items:flex-start;gap:14px;margin-top:8px}
-.brand .meta span:first-child{font-family:var(--f-mono);font-size:14px;color:var(--ink);font-variant-numeric:tabular-nums}
+.brand li:before{content:"";position:absolute;left:0;top:.72em;width:8px;height:2px;background:var(--a)}
+.brand .meta{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-top:6px}
+.brand .meta span:first-child{font-size:14px;color:var(--mut);font-variant-numeric:tabular-nums}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--a);color:#fff;padding:11px 20px;font-size:15px;transition:background .2s}
+.btn.sm{padding:9px 16px;font-size:14px}
 
-/* how it works */
-.how-sec{background:var(--panel-2);border-block:1px solid var(--line)}
+/* ---------- how it works ---------- */
 .how{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px}
-.how div{border-top:2px solid var(--a);padding-top:18px}
-.how h4{font-size:18px;font-weight:600;margin-bottom:6px}
+.how div{border-top:2px solid var(--ink);padding-top:16px}
+.how h3{font:600 18px/1.3 var(--f-body);letter-spacing:0;margin-bottom:6px}
 .how p{color:var(--mut);font-size:15px;max-width:34ch}
 
 footer{padding-block:36px;color:var(--mut);font-size:13px}
 footer .wrap{display:flex;flex-direction:column;gap:8px}
 footer p{max-width:90ch}
-footer a.pp{text-decoration:underline;font-weight:600;color:var(--ink)}
-
-.js [data-hero]{visibility:hidden}
-
-/* mobile: brand switcher stays as tappable tabs */
-nav.top a b{display:none}
+footer a.pp{text-decoration:underline;font-weight:600}
 section[id]{scroll-margin-top:72px}
+
 @media(max-width:860px){
   header .wrap{flex-wrap:wrap;height:auto;padding-top:10px;row-gap:8px}
   header .wrap>.logo{flex:1}
   nav.top{order:3;width:100%;gap:6px;padding-bottom:10px;overflow-x:auto}
-  nav.top a,nav.top a.on{display:flex;flex-direction:column;justify-content:center;align-items:center;flex:1;min-width:0;text-align:center;white-space:nowrap;line-height:1.2;padding:7px 8px;background:var(--panel);border:1px solid var(--line);border-radius:6px;box-shadow:none;color:var(--ink)}
-  nav.top a.on{background:var(--a);border-color:var(--a);color:#fff}
+  nav.top a{display:flex;flex-direction:column;justify-content:center;align-items:center;flex:1;min-width:0;text-align:center;white-space:nowrap;line-height:1.2;padding:7px 8px}
   nav.top a b{display:block;font-size:14px}
-  nav.top a b+span{font-size:11px;font-weight:500;opacity:.75}
+  nav.top a b+span{font-size:11px;opacity:.75}
   nav.top a:first-child{flex:0 0 auto;padding:7px 12px}
   section[id]{scroll-margin-top:130px}
-  .hero .wrap{grid-template-columns:1fr;gap:36px}
+  .intro .wrap,.head{grid-template-columns:1fr}
+  .row{grid-template-columns:44px minmax(0,1fr) auto}
+  .row .tool{grid-column:2}
+  .row .see{grid-column:3;grid-row:1/3}
 }
 @media(max-width:760px){
   .wrap{padding-inline:16px}
-  .hero{padding-block:44px 40px}
-  section{padding-block:48px}
+  .intro{padding-block:32px 0}
+  .intro p{font-size:16.5px}
+  section{padding-block:56px}
   .brands,.how{grid-template-columns:1fr}
   .how{gap:28px}
   .brand .body{padding:20px}
+  .brand h3{font-size:30px}
+  .row{grid-template-columns:40px minmax(0,1fr);padding:16px 2px}
+  .lamp{width:36px;height:36px}
+  .row .see{grid-column:2;grid-row:auto}
+
+  /* phones: the stage gets taller; each product becomes a round icon with a red dot,
+     tapping it opens a small panel above the icon */
+  .stage{height:max(430px,116vw)}
+  .pc{width:58px;height:58px;padding:3px;border-radius:50%;overflow:visible}
+  .pc .img{width:100%;height:100%;margin:0;border-radius:50%}
+  .pc::after{content:"";position:absolute;top:-2px;right:-2px;width:12px;height:12px;border-radius:50%;background:var(--fault);border:2px solid #fff}
+  .pc .info{position:absolute;bottom:68px;width:max-content;max-width:min(250px,calc(100vw - 44px));padding:10px 12px 12px;background:#fff;border:1.5px solid var(--a);border-radius:12px;box-shadow:0 12px 30px -16px rgba(0,0,0,.4);opacity:0;transform:translateY(-4px) scale(.96);pointer-events:none;transition:opacity .2s,transform .2s;z-index:3}
+  #pc-screen .info{left:0;transform-origin:left bottom;border-color:var(--elec)}
+  #pc-engine .info{right:0;transform-origin:right bottom}
+  #pc-tyre .info{left:0}
+  .pc.on .info{opacity:1;transform:none;pointer-events:auto}
+  .pc .fault{font-size:11px;margin-bottom:5px}
+  .pc h3{font-size:13.5px;margin:0 0 8px;min-height:0;max-width:210px}
+  .pc .go,.pc.soon .pill{padding:6px 11px;font-size:12px}
+  #pc-screen{left:18px;top:120px}
+  #pc-engine{right:18px;left:auto;top:120px}
+  #pc-tyre{left:18px;bottom:40px}
 }
-@media(prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}#wires .ring,#wires g.on .flow{animation:none}}
 </style>
+<link rel="stylesheet" href="assets/css/site.css">
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/" } }
+</script>
 </head>
 <body>
 
@@ -141,32 +192,68 @@ section[id]{scroll-margin-top:72px}
 </div></header>
 
 <main>
-<section class="hero"><div class="wrap">
-  <div>
-    <span class="tag" data-hero>Car tech you can install yourself</span>
-    <h1 data-hero>Hand-picked tools to <em>diagnose and upgrade</em> your car</h1>
-    <p data-hero>We sort, explain and compare products from trusted brands so you can find the right tool or screen for your car in minutes.</p>
-  </div>
-  <div class="needs" id="needs"></div>
+<section class="intro"><div class="wrap">
+  <h1>Your car is trying to tell you something.</h1>
+  <p>Smoke from the hood, a warning on the screen, a tire going soft. <b>Tap a fault on the car</b> to see the tool that finds it and fixes it.</p>
 </div></section>
 
-<section id="brands"><div class="wrap">
-  <div class="sec-head">
+<!-- THE CAR. Product frames: edit the picture, title and link inside each .pc block.
+     Tire frame stays hidden until SHOW_TYRE_PRODUCT = true in assets/js/hero-car.js -->
+<div class="stage" id="stage">
+  <span class="wait">Starting the engine…</span>
+  <svg id="wires" aria-hidden="true"></svg>
+  <div class="pc" id="pc-screen" data-fault="screen" data-fly role="button" tabindex="0" aria-label="Warning screen: CarPlay head unit">
+    <div class="img cover" style="background-image:url('https://cdn.shopify.com/s/files/1/0637/7527/7119/files/2020-2025_-RAV4.jpg?v=1781866897&width=600')"></div>
+    <div class="info">
+      <div class="fault"><i></i>Screen warning</div>
+      <h3>Wireless CarPlay touchscreen head unit</h3>
+      <a class="go" href="carplay-screen/">View screens</a>
+    </div>
+  </div>
+  <div class="pc" id="pc-engine" data-fault="engine" data-fly role="button" tabindex="0" aria-label="Smoking engine: MA900 scanner">
+    <div class="img" style="background-image:url('https://www.icarzone.com/cdn/shop/files/MA900_2186dd7e-3f91-436d-9f80-54f632fb4097.png?v=1781594039&width=600')"></div>
+    <div class="info">
+      <div class="fault"><i></i>Engine smoking</div>
+      <h3>MA900 OBD2 scanner &amp; battery tester</h3>
+      <a class="go" href="icarzone/">View scanners</a>
+    </div>
+  </div>
+  <div class="pc soon" id="pc-tyre" data-fault="tyre" role="button" tabindex="0" aria-label="Flat tire: coming soon" hidden>
+    <div class="img"><svg width="58" height="58" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3"><circle cx="32" cy="32" r="26"/><circle cx="32" cy="32" r="12"/><path d="M32 6v8M32 50v8M6 32h8M50 32h8"/></svg></div>
+    <div class="info">
+      <div class="fault"><i></i>Flat tire</div>
+      <h3>Portable tire inflator</h3>
+      <span class="pill">Coming soon</span>
+    </div>
+  </div>
+</div>
+<p class="stage-note"><i></i>Sound on: each fault plays its own warning.</p>
+
+<section id="symptoms"><div class="wrap">
+  <div class="head">
+    <h2>Match the symptom to the tool</h2>
+    <p>Start from what the car is doing. Each line points to the kind of tool that deals with it and the brand page where we compare them.</p>
+  </div>
+  <div class="chart" id="chart"></div>
+</div></section>
+
+<section class="brands-sec" id="brands"><div class="wrap">
+  <div class="head">
     <h2>Shop by brand</h2>
-    <p class="sub">Each brand page lists every product by category, with side-by-side comparisons to help you choose.</p>
+    <p>Each brand page lists every product by category, with side-by-side comparisons to help you choose.</p>
   </div>
-  <div class="brands" id="brandGrid" data-reveal-group></div>
+  <div class="brands" id="brandGrid"></div>
 </div></section>
 
-<section class="how-sec"><div class="wrap">
-  <div class="sec-head">
+<section><div class="wrap">
+  <div class="head">
     <h2>How Tool.Cars works</h2>
-    <p class="sub">Independent pages that do the sorting for you. You always buy on the brand's official store.</p>
+    <p>Independent pages that do the sorting for you. You always buy on the brand's official store.</p>
   </div>
-  <div class="how" data-reveal-group>
-    <div data-reveal><h4>Sorted by need</h4><p>Products are grouped by what they do and which car they fit, not by catalog order.</p></div>
-    <div data-reveal><h4>Compared side by side</h4><p>Pick any two products and see price, features and specs on one screen.</p></div>
-    <div data-reveal><h4>Bought from the brand</h4><p>Every link goes to the official store, where prices, shipping and warranty are set.</p></div>
+  <div class="how">
+    <div><h3>Sorted by need</h3><p>Products are grouped by what they do and which car they fit, not by catalog order.</p></div>
+    <div><h3>Compared side by side</h3><p>Pick any two products and see price, features and specs on one screen.</p></div>
+    <div><h3>Bought from the brand</h3><p>Every link goes to the official store, where prices, shipping and warranty are set.</p></div>
   </div>
 </div></section>
 </main>
@@ -184,40 +271,61 @@ section[id]{scroll-margin-top:72px}
    To add a brand: create its folder (e.g. /new-brand/index.html) and copy one block below.
    ===================================================================== */
 const BRANDS = [
- { page:"icarzone/", nav:"Diagnostic tools", label:"iCARZONE", kind:"OBD2 scanners & battery testers",
-   title:"Diagnose any warning light", need:"Fix a check engine light",
+ { page:"icarzone/", nav:"Diagnostic tools", label:"iCARZONE", kind:"OBD2 scanners and battery testers",
+   title:"Diagnose any warning light",
    text:"Scan tools from DIY code readers to dealer-level bidirectional tablets, plus battery testers and OBD-I adapters.",
-   points:["Lifetime free software updates, no subscription","Bidirectional control and ECU coding on UR & JU series","Battery & charging system testers for DIYers"],
+   points:["Lifetime free software updates, no subscription","Bidirectional control and ECU coding on UR and JU series","Battery and charging system testers for DIYers"],
    from:"From $22.99", count:"17 products",
    img:"https://www.icarzone.com/cdn/shop/files/JU2000MAX_19020c62-5f51-4d31-a787-17b494b93b37.png?v=1781593755&width=900", fit:"contain" },
- { page:"carplay-screen/", nav:"CarPlay screens", label:"Youducar", kind:"Android head units & CarPlay screens",
-   title:"Give your car a big CarPlay screen", need:"Add CarPlay to my car",
+ { page:"carplay-screen/", nav:"CarPlay screens", label:"Youducar", kind:"Android head units and CarPlay screens",
+   title:"Give your car a big CarPlay screen",
    text:"Vehicle-specific Android head units for Toyota, Ford, Chevy, Jeep, Honda and more, with wireless CarPlay and Android Auto.",
    points:["Plug-and-play fit with factory-style connectors","Works with factory camera and steering wheel buttons","Pick your car and compare models side by side"],
    from:"Screens from about $210", count:"250+ products",
    img:"https://cdn.shopify.com/s/files/1/0637/7527/7119/files/2020-2025_-RAV4.jpg?v=1781866897&width=900", fit:"cover" }
 ];
+
+// SYMPTOM CHART. lamp: engine | battery | warn | screen | tire. Leave page:"" for "coming soon".
+const SYMPTOMS = [
+ { lamp:"engine", color:"#e3241b", sym:"Check engine light is on", why:"Read the trouble code, see what it means, clear it after the repair.", tool:"OBD2 scanner", brand:"iCARZONE MA and UR series", page:"icarzone/", see:"See scanners" },
+ { lamp:"warn", color:"#e3241b", sym:"Rough idle, misfires or smoke", why:"Live data and bidirectional tests show which part is failing before you buy it.", tool:"Bidirectional scan tool", brand:"iCARZONE UR and JU series", page:"icarzone/", see:"See scan tools" },
+ { lamp:"battery", color:"#f59e0b", sym:"Slow crank or a dead battery", why:"Test battery health, cranking and the alternator in a few seconds.", tool:"Battery tester", brand:"iCARZONE MA500, MA900", page:"icarzone/", see:"See testers" },
+ { lamp:"screen", color:"#1e88ff", sym:"Old screen, no CarPlay", why:"A head unit made for your car adds wireless CarPlay and Android Auto.", tool:"CarPlay head unit", brand:"Youducar", page:"carplay-screen/", see:"See screens" },
+ { lamp:"tire", color:"#8b8a86", sym:"Low or flat tire", why:"We're still choosing a tire inflator brand to recommend.", tool:"Tire inflator", brand:"No brand picked yet", page:"", see:"Coming soon" }
+];
 /* ===================== END OF SETTINGS ===================== */
+
+const LAMPS = {
+  engine:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 10v5h2l2 3h8v-3h2v2h2V9h-2v2h-2V8h-4V6h3V4.5H9V6h3v2H8L6 10z"/></svg>',
+  warn:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5 21.5 20h-19z"/><path d="M12 9.5v5M12 17v.6" stroke-linecap="round"/></svg>',
+  battery:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="7" width="18" height="12" rx="1.5"/><path d="M7 7V5h3v2M14 7V5h3v2M6.5 13h3M15 13h3M16.5 11.5v3" stroke-linecap="round"/></svg>',
+  screen:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5" width="18" height="12" rx="1.5"/><path d="M9 20h6M12 17v3" stroke-linecap="round"/></svg>',
+  tire:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M6.5 18.5a8 8 0 1 1 11 0"/><path d="M5 20.5h14M12 9v4M12 15.5v.6" stroke-linecap="round"/></svg>'
+};
 
 document.getElementById("nav").innerHTML = '<a class="on" href="./"><span>All brands</span></a>' +
   BRANDS.map(function(b){ return '<a href="'+b.page+'"><b>'+b.label+'</b><span>'+b.nav+'</span></a>'; }).join("");
 
-document.getElementById("needs").innerHTML = '<span class="needs-h">What do you need?</span>' + BRANDS.map(function(b){
-  return '<a href="'+b.page+'" data-hero><span class="q">'+b.need+'</span>'+
-    '<span class="m">'+b.label+' · '+b.count+' · '+b.from+'</span><span class="go" aria-hidden="true">→</span></a>';
+document.getElementById("chart").innerHTML = SYMPTOMS.map(function(s){
+  var inner = '<span class="lamp" style="--c:'+s.color+'">'+(LAMPS[s.lamp]||"")+'</span>'+
+    '<div><h3>'+s.sym+'</h3><p class="why">'+s.why+'</p></div>'+
+    '<p class="tool">'+s.tool+'<small>'+s.brand+'</small></p>'+
+    '<span class="see">'+s.see+'</span>';
+  return s.page ? '<a class="row" href="'+s.page+'">'+inner+'</a>' : '<div class="row off">'+inner+'</div>';
 }).join("");
 
 document.getElementById("brandGrid").innerHTML = BRANDS.map(function(b){
-  return '<a class="brand" href="'+b.page+'" data-reveal>'+
+  return '<a class="brand" href="'+b.page+'" data-fly>'+
     '<div class="pic"><img loading="lazy" alt="'+b.label+' '+b.kind+'" src="'+b.img+'" style="object-fit:'+(b.fit||"cover")+(b.fit==="contain"?";padding:22px":"")+'"></div>'+
-    '<div class="body"><span class="kind"><b>'+b.label+'</b> · '+b.kind+'</span><h3>'+b.title+'</h3><p>'+b.text+'</p>'+
+    '<div class="body"><span class="kind"><b>'+b.label+'</b>, '+b.kind+'</span><h3>'+b.title+'</h3><p>'+b.text+'</p>'+
     '<ul>'+b.points.map(function(t){return "<li>"+t+"</li>"}).join("")+'</ul>'+
-    '<div class="meta"><span>'+b.from+' · '+b.count+'</span><span class="btn sm">See '+b.label+' products →</span></div></div></a>';
+    '<div class="meta"><span>'+b.from+', '+b.count+'</span><span class="btn sm">See '+b.label+' products</span></div></div></a>';
 }).join("");
 
 document.getElementById("y").textContent = new Date().getFullYear();
 </script>
-<script src="assets/js/gsap.min.js" defer></script>
-<script src="assets/js/motion.js" defer></script>
+<script src="assets/js/gsap.min.js"></script>
+<script src="assets/js/transit.js" defer></script>
+<script type="module" src="assets/js/hero-car.js"></script>
 </body>
 </html>

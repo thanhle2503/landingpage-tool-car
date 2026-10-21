@@ -146,6 +146,11 @@ section[id],.cat{scroll-margin-top:72px}
   .sub{margin-bottom:24px}
 }
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script>try{if(sessionStorage.getItem("tc-transit")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("tc-arrive");setTimeout(function(){document.documentElement.classList.remove("tc-arrive")},3000)}}catch(e){}</script>
 </head>
 <body>
 
@@ -171,8 +176,8 @@ section[id],.cat{scroll-margin-top:72px}
     </div>
   </div>
   <div class="collage">
-    <img class="a" alt="Youducar 12.3 inch Android head unit installed in a Toyota RAV4" src="https://cdn.shopify.com/s/files/1/0637/7527/7119/files/2020-2025_-RAV4.jpg?v=1781866897&width=900">
-    <img class="b" alt="Youducar 12.5 inch Android head unit for Toyota Tacoma" src="https://cdn.shopify.com/s/files/1/0637/7527/7119/files/6800ec40322feab706385870d72e58fe.jpg?v=1788578312&width=900">
+    <img class="a" data-land alt="Youducar 12.3 inch Android head unit installed in a Toyota RAV4" src="https://cdn.shopify.com/s/files/1/0637/7527/7119/files/2020-2025_-RAV4.jpg?v=1781866897&width=900">
+    <img class="b" data-land alt="Youducar 12.5 inch Android head unit for Toyota Tacoma" src="https://cdn.shopify.com/s/files/1/0637/7527/7119/files/6800ec40322feab706385870d72e58fe.jpg?v=1788578312&width=900">
   </div>
 </div></section>
 
@@ -583,5 +588,7 @@ $("state").style.display="block"; $("state").textContent="Loading the latest mod
 
 $("y").textContent = new Date().getFullYear();
 </script>
+<script src="../assets/js/gsap.min.js" defer></script>
+<script src="../assets/js/transit.js" defer></script>
 </body>
 </html>
