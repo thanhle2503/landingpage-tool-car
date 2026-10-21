@@ -33,7 +33,7 @@ nav.top a.on{color:var(--ink);background:var(--card);border:1px solid var(--line
 .btn.sm{padding:9px 20px;font-size:14px;box-shadow:none}
 .btn.ghost{background:transparent;border:1px solid var(--line);box-shadow:none}
 .btn.ghost:hover{background:var(--card)}
-.crumbs{font-size:13px;color:var(--mut);padding:18px 0 0}
+.crumbs{font-size:13px;color:var(--mut);padding:18px 20px 0}
 .crumbs a:hover{color:var(--a)}
 .hero{padding:28px 0 36px;background:radial-gradient(1000px 420px at 85% -10%,#3a1f0f,transparent)}
 .hero .wrap{display:grid;grid-template-columns:1fr 1.05fr;gap:44px;align-items:start}
@@ -115,6 +115,11 @@ section[id]{scroll-margin-top:72px}
   .sub{margin-bottom:24px}
 }
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<script>try{if(sessionStorage.getItem("tc-transit")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("tc-arrive");setTimeout(function(){document.documentElement.classList.remove("tc-arrive")},3000)}}catch(e){}</script>
 </head>
 <body>
 
@@ -133,7 +138,7 @@ section[id]{scroll-margin-top:72px}
   <div class="wrap crumbs" style="display:block;padding-bottom:18px"><a href="../../">Home</a> › <a href="../">iCARZONE</a> › <a href="../#cat-ma">MA Series</a> › MA900</div>
   <div class="wrap">
   <div class="gal">
-    <div class="main"><img id="mainImg" alt="iCARZONE MA900 2-in-1 OBD2 scanner and battery tester" src="ma900.png"></div>
+    <div class="main"><img id="mainImg" data-land alt="iCARZONE MA900 2-in-1 OBD2 scanner and battery tester" src="ma900.png"></div>
     <div class="thumbs" id="thumbs">
       <button type="button" class="on" data-src="ma900.png"><img alt="MA900 front view" src="ma900.png"></button>
       <button type="button" data-src="https://www.icarzone.com/cdn/shop/files/MA9001.jpg?v=1781694043&width=900"><img loading="lazy" alt="MA900 OBD2 diagnostics" src="https://www.icarzone.com/cdn/shop/files/MA9001.jpg?v=1781694043&width=300" onerror="this.parentNode.remove()"></button>
@@ -257,5 +262,7 @@ document.getElementById("thumbs").onclick = function(e){
 
 document.getElementById("y").textContent = new Date().getFullYear();
 </script>
+<script src="../../assets/js/gsap.min.js" defer></script>
+<script src="../../assets/js/transit.js" defer></script>
 </body>
 </html>
