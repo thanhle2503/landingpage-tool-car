@@ -725,7 +725,7 @@ function placeIcons() {
   if (!phone.matches) { for (const w of Object.values(wires)) if (w.card.id !== "pc-tyre") w.card.style.top = ""; return; }
   let top = Infinity;
   for (const p of roofPts) { tmp.copy(p); car.localToWorld(tmp); tmp.project(camera); top = Math.min(top, (-tmp.y * 0.5 + 0.5) * SH()); }
-  const y = Math.max(118, top - 58 - 34) + "px";
+  const y = Math.max(12, top - 58 - 34) + "px";
   for (const id of ["pc-screen", "pc-engine"]) { const c = document.getElementById(id); if (c.style.top !== y) c.style.top = y; }
 }
 function drawWires() {
