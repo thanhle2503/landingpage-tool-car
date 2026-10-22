@@ -659,12 +659,18 @@ function fit() {
   if (!w || !h) return;
   renderer.setPixelRatio(Math.min(2, devicePixelRatio));
   camera.aspect = w / h;
-  // keep the whole car in view: wide screens frame by height, narrow ones by width
-  const need = (phone.matches ? 5.0 : 6.6) / camera.aspect;
-  camera.fov = Math.max(phone.matches ? 16 : 15.5, (2 * Math.atan(Math.max(need, 2.2) / 2 / D) * 180) / Math.PI);
-  // phones: push the car down so the round product icons and their popups fit above it
-  if (phone.matches) camera.setViewOffset(w, h, 0, -h * 0.13, w, h);
-  else camera.setViewOffset(w, h, 0, -h * 0.03, w, h);
+  if (phone.matches) {
+    // phones: frame by width, push the car down so the round product icons and their popups fit above it
+    const need = 5.0 / camera.aspect;
+    camera.fov = Math.max(16, (2 * Math.atan(Math.max(need, 2.2) / 2 / D) * 180) / Math.PI);
+    camera.setViewOffset(w, h, 0, -h * 0.13, w, h);
+  } else {
+    // PC: the car is the star — about half the screen wide, sitting a little right of centre and low,
+    // leaving the top-left for the headline and the corners for the small product cards
+    const viewH = Math.max(9.2 / camera.aspect, 3.7);
+    camera.fov = (2 * Math.atan(viewH / 2 / D) * 180) / Math.PI;
+    camera.setViewOffset(w, h, -w * 0.06, -h * 0.05, w, h);
+  }
   camera.updateProjectionMatrix();
   renderer.setSize(w, h);
 }
@@ -673,7 +679,11 @@ fit();
 // draw only while the hero is on screen, so scrolling the rest of the page stays light
 let visible = true;
 new IntersectionObserver((e) => { visible = e[0].isIntersecting; }, { rootMargin: "80px" }).observe(stage);
+const camBase = camera.position.clone(), look = { x: 0, y: 0, tx: 0, ty: 0 };
+addEventListener("pointermove", (e) => { if (phone.matches || e.pointerType === "touch") return; look.tx = e.clientX / innerWidth - 0.5; look.ty = e.clientY / innerHeight - 0.5; });
 const frame = () => {
+  look.x += (look.tx - look.x) * 0.05; look.y += (look.ty - look.y) * 0.05;
+  camera.position.set(camBase.x + look.x * 1.1, camBase.y, camBase.z - look.y * 0.8); camera.lookAt(target);
   tick(performance.now() / 1000);
   renderer.render(scene, camera);
   drawWires();
@@ -685,7 +695,7 @@ const SHOW_TYRE_PRODUCT = false;
 document.getElementById("pc-tyre").hidden = !SHOW_TYRE_PRODUCT;
 const FAULTS = {
   engine: new THREE.Vector3(1.55, -0.34, 0.72),   // bonnet vent the smoke comes from
-  screen: new THREE.Vector3(0.22, 0, 1.0),        // centre warning screen
+  screen: new THREE.Vector3(0.22, -0.27, 0.97),   // near edge of the warning screen, so the dot never hides it
   tyre: new THREE.Vector3(AXLE_R, -0.93, 0.2),    // flat rear tyre, outer sidewall
 };
 FAULTS.engine.z = bodyTopZ(FAULTS.engine.x, FAULTS.engine.y) ?? 0.7;
@@ -699,9 +709,9 @@ for (const k of Object.keys(FAULTS)) {
   w.halo = el("path", "halo", g);
   w.path = el("path", "w", g);
   w.flow = el("path", "flow", g);
-  w.end = el("circle", "end", g); w.end.setAttribute("r", 4);
-  w.ring = el("circle", "ring", g); w.ring.setAttribute("r", 7);
-  w.dot = el("circle", "dot", g); w.dot.setAttribute("r", 4.5);
+  w.end = el("circle", "end", g); w.end.setAttribute("r", 3);
+  w.ring = el("circle", "ring", g); w.ring.setAttribute("r", 4.5);
+  w.dot = el("circle", "dot", g); w.dot.setAttribute("r", 3);
   w.hit = el("path", "hit", g);
   w.hit.addEventListener("click", () => activate(k));
   w.card.addEventListener("click", (e) => { if (!e.target.closest("a")) activate(k); });
@@ -817,8 +827,10 @@ window.__activate = activate;
 // first frame drawn: let the page fade the car in
 frame();
 stage.classList.add("ready");
-if (window.gsap && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+if (window.gsap) {
   gsap.fromTo(car.position, { x: -1.6 }, { x: 0, duration: 1.4, ease: "power3.out" });
-  gsap.fromTo(stage.querySelectorAll(".pc:not([hidden])"), { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.6, stagger: 0.12, delay: 0.9, ease: "power2.out", clearProps: "transform" });
+  const cards = stage.querySelectorAll(".pc:not([hidden])");
+  gsap.fromTo(cards, { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.6, stagger: 0.12, delay: 0.9, ease: "power2.out", clearProps: "transform",
+    onComplete: () => { if (!phone.matches) cards.forEach((c, i) => gsap.to(c, { y: -5, duration: 2.4 + i * 0.4, ease: "sine.inOut", yoyo: true, repeat: -1, delay: i * 0.7 })); } });
 }
 window.__ready = true;
