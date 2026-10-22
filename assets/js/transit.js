@@ -5,7 +5,7 @@
    Works on every page that loads gsap.min.js + this file. */
 (() => {
   const KEY = "tc-transit";
-  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const reduce = false; // keep the page-change animation on every device (phones in battery saver report "reduce motion")
   const root = document.documentElement;
 
   // Brand names + a stand-in photo for links that carry no picture (header tabs)

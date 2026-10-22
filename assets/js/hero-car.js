@@ -669,7 +669,7 @@ function fit() {
     // leaving the top-left for the headline and the corners for the small product cards
     const viewH = Math.max(9.2 / camera.aspect, 3.7);
     camera.fov = (2 * Math.atan(viewH / 2 / D) * 180) / Math.PI;
-    camera.setViewOffset(w, h, -w * 0.06, -h * 0.05, w, h);
+    camera.setViewOffset(w, h, -w * 0.06, -h * (h < 640 ? 0.11 : 0.075), w, h);
   }
   camera.updateProjectionMatrix();
   renderer.setSize(w, h);
@@ -831,6 +831,6 @@ if (window.gsap) {
   gsap.fromTo(car.position, { x: -1.6 }, { x: 0, duration: 1.4, ease: "power3.out" });
   const cards = stage.querySelectorAll(".pc:not([hidden])");
   gsap.fromTo(cards, { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.6, stagger: 0.12, delay: 0.9, ease: "power2.out", clearProps: "transform",
-    onComplete: () => { if (!phone.matches) cards.forEach((c, i) => gsap.to(c, { y: -5, duration: 2.4 + i * 0.4, ease: "sine.inOut", yoyo: true, repeat: -1, delay: i * 0.7 })); } });
+    onComplete: () => { if (!phone.matches) gsap.to(cards, { y: -5, duration: 2.6, ease: "sine.inOut", yoyo: true, repeat: -1 }); } });
 }
 window.__ready = true;
