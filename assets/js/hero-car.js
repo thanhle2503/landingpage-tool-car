@@ -695,7 +695,7 @@ const SHOW_TYRE_PRODUCT = false;
 document.getElementById("pc-tyre").hidden = !SHOW_TYRE_PRODUCT;
 const FAULTS = {
   engine: new THREE.Vector3(1.55, -0.34, 0.72),   // bonnet vent the smoke comes from
-  screen: new THREE.Vector3(0.22, -0.27, 0.97),   // near edge of the warning screen, so the dot never hides it
+  screen: new THREE.Vector3(0.22, 0.27, 0.97),    // far edge of the warning screen: the wire comes from above and never crosses it
   tyre: new THREE.Vector3(AXLE_R, -0.93, 0.2),    // flat rear tyre, outer sidewall
 };
 FAULTS.engine.z = bodyTopZ(FAULTS.engine.x, FAULTS.engine.y) ?? 0.7;
