@@ -34,7 +34,8 @@ nav.top a b{display:none}
 /* ---------- hero: headline, then the broken car on its own stage ---------- */
 .intro{padding-block:44px 0}
 .intro .wrap{display:grid;grid-template-columns:1.3fr .7fr;gap:16px 56px;align-items:end}
-.intro h1{font-size:clamp(34px,5vw,64px);max-width:none}
+.intro h1{font-size:clamp(34px,5vw,64px);max-width:none;white-space:nowrap}
+.intro h1 .hl{color:var(--a)}
 .intro p{color:var(--mut);font-size:18px;max-width:38ch;padding-bottom:8px}
 .intro p b{color:var(--ink);font-weight:600}
 
@@ -198,6 +199,10 @@ section[id]{scroll-margin-top:72px}
   .pc .info{position:absolute;bottom:68px;width:max-content;max-width:min(250px,calc(100vw - 44px));padding:10px 12px 12px;background:#fff;border:1.5px solid var(--a);border-radius:12px;box-shadow:0 12px 30px -16px rgba(0,0,0,.4);opacity:0;transform:translateY(-4px) scale(.96);pointer-events:none;transition:opacity .2s,transform .2s;z-index:3}
   #pc-screen .info{left:0;transform-origin:left bottom;border-color:var(--elec)}
   #pc-engine .info{right:0;transform-origin:right bottom}
+  /* info box opens below the icon so it never covers the headline */
+  .pc .info{bottom:auto;top:68px}
+  #pc-screen .info{transform-origin:left top}
+  #pc-engine .info{transform-origin:right top}
   #pc-tyre .info{left:0}
   .pc.on .info{opacity:1;transform:none;pointer-events:auto}
   .pc .fault{font-size:11px;margin-bottom:5px}
@@ -224,7 +229,7 @@ section[id]{scroll-margin-top:72px}
 <main>
 <div class="hero-zone">
 <section class="intro"><div class="wrap">
-  <h1>Your car is talking.<br>Find the fix.</h1>
+  <h1>Find it. <span class="hl">Fix it.</span></h1>
 </div></section>
 
 <!-- THE CAR. Product frames: edit the picture, title and link inside each .pc block.
