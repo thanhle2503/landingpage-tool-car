@@ -219,12 +219,120 @@ section[id]{scroll-margin-top:72px}
 <script type="importmap">
 { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/" } }
 </script>
+<script type="application/ld+json" id="ld-main">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebPage",
+   "@id": "https://tool.goldenpasss.com/#page",
+   "url": "https://tool.goldenpasss.com/",
+   "name": "Tool.Cars – Hand-Picked Car Diagnostic Tools & CarPlay Screen Upgrades",
+   "description": "Tool.Cars reviews and compares car tech you can install yourself: OBD2 diagnostic scanners and battery testers, plus plug-and-play CarPlay and Android Auto screens.",
+   "dateModified": "2026-10-23",
+   "isPartOf": {
+    "@id": "https://tool.goldenpasss.com/#site"
+   },
+   "publisher": {
+    "@id": "https://tool.goldenpasss.com/#org"
+   }
+  },
+  {
+   "@type": "Organization",
+   "@id": "https://tool.goldenpasss.com/#org",
+   "name": "Tool.Cars",
+   "url": "https://tool.goldenpasss.com/",
+   "description": "Independent review and comparison site for DIY car diagnostic tools and CarPlay screen upgrades."
+  },
+  {
+   "@type": "WebSite",
+   "@id": "https://tool.goldenpasss.com/#site",
+   "name": "Tool.Cars",
+   "url": "https://tool.goldenpasss.com/",
+   "publisher": {
+    "@id": "https://tool.goldenpasss.com/#org"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://tool.goldenpasss.com/#faq",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What OBD2 scanner should a beginner buy?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "For a check engine light, a plug-in code reader such as the iCARZONE MA100 (about $23) reads and clears engine codes on any 1996+ US car. If you also want to test the battery, the MA900 (about $70) adds 12V/24V battery, cranking and charging tests in the same handheld tool."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Which scanner reads ABS and airbag (SRS) codes?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "A basic code reader only covers the engine. For ABS, airbag (SRS) and transmission codes you need a multi-system tool: the iCARZONE MA200 Plus (about $145), the UR600 (about $200, engine, ABS, airbag and transmission) or a full-system UR or JU scanner that reads every module in the car."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What is a bidirectional scan tool and do I need one?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "A bidirectional scan tool can send commands to the car, not just read it: run the fuel pump, cycle ABS valves, open the electronic parking brake or relearn the throttle. DIYers doing their own repairs and small shops benefit most. If you only want to read and clear codes, you don't need one."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What is the cheapest bidirectional scan tool on this site?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The iCARZONE MA200 V6 at about $100 is the lowest-priced tool here with bidirectional control. It also has 6 service resets: oil, EPB, steering angle, DPF, battery (BMS) and TPMS. For full-system coverage and ECU coding, the UR series starts at about $190."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Do iCARZONE scanners need a yearly subscription?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. iCARZONE lists lifetime free software updates with no annual subscription on its scanners, plus a 1-year hardware warranty. Some competing scan tools charge a renewal fee after the first year or two, so this lowers the long-term cost of owning the tool."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can I add wireless CarPlay to a car that doesn't have it?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. A vehicle-specific Android head unit replaces the factory radio and adds wireless Apple CarPlay and Android Auto. Youducar makes these for Toyota, Ford, Chevy, Jeep, Honda and more, with prices starting around $210 for screens. Match your exact model and year range before ordering."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Are Youducar head units plug-and-play?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Youducar describes its vehicle-specific units as plug-and-play, using factory-style connectors that plug into the car's existing wiring, so no wire cutting is needed. They list support for the factory backup camera and steering wheel buttons. Some cars need an extra adapter, sold separately."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How does Tool.Cars make money?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Tool.Cars earns an affiliate commission when you buy through links on this site, at no extra cost to you. Picks are based on each product's published specs, prices and customer reviews. You always buy on the brand's official store, which sets the price, shipping and warranty, so check the product page before ordering."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+<link rel="canonical" id="canonical" href="https://tool.goldenpasss.com/">
 </head>
 <body>
 
 <header><div class="wrap">
   <a class="logo" href="./">Tool<span>.Cars</span></a>
-  <nav class="top" id="nav"></nav>
+  <nav class="top" id="nav"><!--pre--><a class="on" href="./"><span>All brands</span></a><a href="icarzone/"><b>iCARZONE</b><span>Diagnostic tools</span></a><a href="carplay-screen/"><b>Youducar</b><span>CarPlay screens</span></a><!--/pre--></nav>
 </div></header>
 
 <main>
@@ -271,7 +379,7 @@ section[id]{scroll-margin-top:72px}
     <h2>Match the symptom to the tool</h2>
     <p>Start from what the car is doing. Each line points to the kind of tool that deals with it and the brand page where we compare them.</p>
   </div>
-  <div class="chart" id="chart"></div>
+  <div class="chart" id="chart"><!--pre--><a class="row" href="icarzone/"><span class="lamp" style="--c:#e3241b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 10v5h2l2 3h8v-3h2v2h2V9h-2v2h-2V8h-4V6h3V4.5H9V6h3v2H8L6 10z"></path></svg></span><div><h3>Check engine light is on</h3><p class="why">Read the trouble code, see what it means, clear it after the repair.</p></div><p class="tool">OBD2 scanner<small>iCARZONE MA and UR series</small></p><span class="see">See scanners</span></a><a class="row" href="icarzone/"><span class="lamp" style="--c:#e3241b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5 21.5 20h-19z"></path><path d="M12 9.5v5M12 17v.6" stroke-linecap="round"></path></svg></span><div><h3>Rough idle, misfires or smoke</h3><p class="why">Live data and bidirectional tests show which part is failing before you buy it.</p></div><p class="tool">Bidirectional scan tool<small>iCARZONE UR and JU series</small></p><span class="see">See scan tools</span></a><a class="row" href="icarzone/"><span class="lamp" style="--c:#f59e0b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="7" width="18" height="12" rx="1.5"></rect><path d="M7 7V5h3v2M14 7V5h3v2M6.5 13h3M15 13h3M16.5 11.5v3" stroke-linecap="round"></path></svg></span><div><h3>Slow crank or a dead battery</h3><p class="why">Test battery health, cranking and the alternator in a few seconds.</p></div><p class="tool">Battery tester<small>iCARZONE MA500, MA900</small></p><span class="see">See testers</span></a><a class="row" href="carplay-screen/"><span class="lamp" style="--c:#1e88ff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5" width="18" height="12" rx="1.5"></rect><path d="M9 20h6M12 17v3" stroke-linecap="round"></path></svg></span><div><h3>Old screen, no CarPlay</h3><p class="why">A head unit made for your car adds wireless CarPlay and Android Auto.</p></div><p class="tool">CarPlay head unit<small>Youducar</small></p><span class="see">See screens</span></a><div class="row off"><span class="lamp" style="--c:#8b8a86"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M6.5 18.5a8 8 0 1 1 11 0"></path><path d="M5 20.5h14M12 9v4M12 15.5v.6" stroke-linecap="round"></path></svg></span><div><h3>Low or flat tire</h3><p class="why">We're still choosing a tire inflator brand to recommend.</p></div><p class="tool">Tire inflator<small>No brand picked yet</small></p><span class="see">Coming soon</span></div><!--/pre--></div>
 </div></section>
 
 <section class="brands-sec" id="brands"><div class="wrap">
@@ -279,7 +387,7 @@ section[id]{scroll-margin-top:72px}
     <h2>Shop by brand</h2>
     <p>Each brand page lists every product by category, with side-by-side comparisons to help you choose.</p>
   </div>
-  <div class="brands" id="brandGrid"></div>
+  <div class="brands" id="brandGrid"><!--pre--><a class="brand" href="icarzone/" data-fly=""><div class="pic"><img loading="lazy" alt="iCARZONE OBD2 scanners and battery testers" src="https://www.icarzone.com/cdn/shop/files/JU2000MAX_19020c62-5f51-4d31-a787-17b494b93b37.png?v=1781593755&amp;width=900" style="object-fit:contain;padding:22px"></div><div class="body"><span class="kind"><b>iCARZONE</b>, OBD2 scanners and battery testers</span><h3>Diagnose any warning light</h3><p>Scan tools from DIY code readers to dealer-level bidirectional tablets, plus battery testers and OBD-I adapters.</p><ul><li>Lifetime free software updates, no subscription</li><li>Bidirectional control and ECU coding on UR and JU series</li><li>Battery and charging system testers for DIYers</li></ul><div class="meta"><span>From $$22.99, 17 products</span><span class="btn sm">See iCARZONE products</span></div></div></a><a class="brand" href="carplay-screen/" data-fly=""><div class="pic"><img loading="lazy" alt="Youducar Android head units and CarPlay screens" src="https://cdn.shopify.com/s/files/1/0637/7527/7119/files/2020-2025_-RAV4.jpg?v=1781866897&amp;width=900" style="object-fit:cover"></div><div class="body"><span class="kind"><b>Youducar</b>, Android head units and CarPlay screens</span><h3>Give your car a big CarPlay screen</h3><p>Vehicle-specific Android head units for Toyota, Ford, Chevy, Jeep, Honda and more, with wireless CarPlay and Android Auto.</p><ul><li>Plug-and-play fit with factory-style connectors</li><li>Works with factory camera and steering wheel buttons</li><li>Pick your car and compare models side by side</li></ul><div class="meta"><span>Screens from about $$210, 250+ products</span><span class="btn sm">See Youducar products</span></div></div></a><!--/pre--></div>
 </div></section>
 
 <section><div class="wrap">
@@ -293,13 +401,31 @@ section[id]{scroll-margin-top:72px}
     <div><h3>Bought from the brand</h3><p>Every link goes to the official store, where prices, shipping and warranty are set.</p></div>
   </div>
 </div></section>
+
+<section id="faq"><div class="wrap">
+  <div class="head">
+    <h2>Car tool questions, answered</h2>
+    <p>Short answers to what drivers ask most before buying a scanner or a CarPlay screen.</p>
+  </div>
+  <div class="faq">
+    <details open><summary>What OBD2 scanner should a beginner buy?</summary><p>For a check engine light, a plug-in code reader such as the iCARZONE MA100 (about $23) reads and clears engine codes on any 1996+ US car. If you also want to test the battery, the MA900 (about $70) adds 12V/24V battery, cranking and charging tests in the same handheld tool.</p></details>
+    <details><summary>Which scanner reads ABS and airbag (SRS) codes?</summary><p>A basic code reader only covers the engine. For ABS, airbag (SRS) and transmission codes you need a multi-system tool: the iCARZONE MA200 Plus (about $145), the UR600 (about $200, engine, ABS, airbag and transmission) or a full-system UR or JU scanner that reads every module in the car.</p></details>
+    <details><summary>What is a bidirectional scan tool and do I need one?</summary><p>A bidirectional scan tool can send commands to the car, not just read it: run the fuel pump, cycle ABS valves, open the electronic parking brake or relearn the throttle. DIYers doing their own repairs and small shops benefit most. If you only want to read and clear codes, you don't need one.</p></details>
+    <details><summary>What is the cheapest bidirectional scan tool on this site?</summary><p>The iCARZONE MA200 V6 at about $100 is the lowest-priced tool here with bidirectional control. It also has 6 service resets: oil, EPB, steering angle, DPF, battery (BMS) and TPMS. For full-system coverage and ECU coding, the UR series starts at about $190.</p></details>
+    <details><summary>Do iCARZONE scanners need a yearly subscription?</summary><p>No. iCARZONE lists lifetime free software updates with no annual subscription on its scanners, plus a 1-year hardware warranty. Some competing scan tools charge a renewal fee after the first year or two, so this lowers the long-term cost of owning the tool.</p></details>
+    <details><summary>Can I add wireless CarPlay to a car that doesn't have it?</summary><p>Yes. A vehicle-specific Android head unit replaces the factory radio and adds wireless Apple CarPlay and Android Auto. Youducar makes these for Toyota, Ford, Chevy, Jeep, Honda and more, with prices starting around $210 for screens. Match your exact model and year range before ordering.</p></details>
+    <details><summary>Are Youducar head units plug-and-play?</summary><p>Youducar describes its vehicle-specific units as plug-and-play, using factory-style connectors that plug into the car's existing wiring, so no wire cutting is needed. They list support for the factory backup camera and steering wheel buttons. Some cars need an extra adapter, sold separately.</p></details>
+    <details><summary>How does Tool.Cars make money?</summary><p>Tool.Cars earns an affiliate commission when you buy through links on this site, at no extra cost to you. Picks are based on each product's published specs, prices and customer reviews. You always buy on the brand's official store, which sets the price, shipping and warranty, so check the product page before ordering.</p></details>
+  </div>
+</div></section>
 </main>
 
 <footer><div class="wrap">
   <p><b>Affiliate disclosure:</b> This site contains affiliate links. If you buy through these links we may earn a commission, at no extra cost to you.</p>
   <p>Tool.Cars is an independent review and comparison site and is not the official website of any brand listed. Brands, images and product names belong to their respective owners. Prices and offers are set by each brand and may change.</p>
   <p><a class="pp" href="https://www.termsfeed.com/live/6e161ee9-1a39-40c5-96cf-be90dc41183e" target="_blank" rel="noopener">Privacy Policy</a></p>
-  <p>© <span id="y"></span> Tool.Cars</p>
+  <p>Last updated: <time datetime="2026-10-23">October 23, 2026</time></p>
+  <p>© <span id="y">2026</span> Tool.Cars</p>
 </div></footer>
 
 <script>

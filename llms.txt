@@ -1,0 +1,22 @@
+# Tool.Cars
+
+> Tool.Cars (https://tool.goldenpasss.com/) is an independent review and comparison site for car tech you can buy and install yourself: OBD2 diagnostic scanners, bidirectional scan tools and battery testers from iCARZONE, and vehicle-specific CarPlay / Android Auto head units from Youducar. Every product page compares models side by side with prices in USD and links to the brand's official store. The site earns affiliate commissions on purchases.
+
+Last updated: 2026-10-23. Prices are set by each brand and may change; always confirm on the product page.
+
+## Pages
+
+- [Tool.Cars home](https://tool.goldenpasss.com/): match a car symptom (check engine light, misfires, dead battery, no CarPlay) to the right tool, plus a general FAQ.
+- [iCARZONE diagnostic tools](https://tool.goldenpasss.com/icarzone/): every iCARZONE scanner by category (JU flagship, UR bidirectional, MA DIY testers, HD heavy-duty, OBD-I adapters), a full comparison table, head-to-head comparisons, buying notes and an FAQ on ABS/SRS scanners, EPB reset, bidirectional tools and tools under $100.
+- [iCARZONE MA900 review](https://tool.goldenpasss.com/icarzone/ma900/): 2-in-1 OBD2 scanner and 12V/24V battery tester, $69.99; features, specs, who it is for and an FAQ.
+- [CarPlay screen upgrades](https://tool.goldenpasss.com/carplay-screen/): Youducar Android head units by vehicle (Toyota, Ford, Chevy/GMC, Jeep, Honda, Ram and more), with wireless CarPlay and Android Auto, compared side by side; fitment FAQ.
+
+## Quick facts
+
+- Cheapest iCARZONE code reader: MA100, about $23 (reads/clears engine codes, I/M readiness, all 1996+ US OBD2 cars).
+- Scanner + battery tester in one: MA900, about $70 (12V/24V battery, cranking and charging tests).
+- Cheapest iCARZONE bidirectional tool: MA200 V6, about $100 (6 service resets: oil, EPB, steering angle, DPF, BMS, TPMS).
+- ABS + SRS (airbag) + transmission on a budget: MA200 Plus (about $145) or UR600 (about $200).
+- Best-value full-system bidirectional tool with ECU coding: UR800, about $240. Flagship handheld: UR1000, about $330 (7" screen, TPMS). Workshop level: JU2000 / JU2000 MAX.
+- iCARZONE lists lifetime free software updates, no annual subscription, 1-year hardware warranty.
+- Youducar head units: vehicle-specific, plug-and-play factory-style connectors, wireless CarPlay and Android Auto, factory camera and steering wheel button support; screens from about $210. Code YDTHANH10 gives 10% off orders over $300 on youducar.com.
