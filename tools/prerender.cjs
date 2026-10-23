@@ -28,7 +28,7 @@ const price = (s) => { const m = String(s || "").replace(/,/g, "").match(/\d+(\.
 function setInner(html, id, inner) {
   const re = new RegExp('(id="' + id + '"[^>]*>)(?:<!--pre-->[\\s\\S]*?<!--/pre-->)?(?=</)');
   if (!re.test(html)) throw new Error("container #" + id + " not found or not empty");
-  return html.replace(re, (_, open) => open + "<!--pre-->" + inner.replace(/\$/g, "$$$$") + "<!--/pre-->");
+  return html.replace(re, (_, open) => open + "<!--pre-->" + inner + "<!--/pre-->");
 }
 
 function setHead(html, id, tag) {
