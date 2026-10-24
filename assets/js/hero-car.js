@@ -722,16 +722,32 @@ for (const k of Object.keys(FAULTS)) {
 const tmp = new THREE.Vector3();
 const roofPts = [new THREE.Vector3(0.84, 0, 0.78), new THREE.Vector3(-0.3, 0, 1.26), new THREE.Vector3(1.9, 0, 0.7)];
 const wheelPts = [new THREE.Vector3(AXLE_R, -0.95, 0), new THREE.Vector3(AXLE_F, -0.95, 0), new THREE.Vector3(AXLE_R, 0.95, 0), new THREE.Vector3(AXLE_F, 0.95, 0)];
+const heroZone = stage.closest(".hero-zone");
+function carBottom() {
+  let bottom = 0;
+  for (const p of wheelPts) { tmp.copy(p); car.localToWorld(tmp); tmp.project(camera); bottom = Math.max(bottom, (-tmp.y * 0.5 + 0.5) * SH()); }
+  return bottom;
+}
 function placeIcons() {
-  if (!phone.matches) { for (const w of Object.values(wires)) { w.card.style.top = ""; w.card.style.bottom = ""; } return; }
+  if (!phone.matches) {
+    for (const id of ["pc-screen", "pc-engine"]) { const c = document.getElementById(id); c.style.top = ""; c.style.bottom = ""; }
+    // PC: tire card sits just under the car, lined up with the screen card above; the hero grows to fit it
+    const t = document.getElementById("pc-tyre"), sc = document.getElementById("pc-screen");
+    const ty = Math.round(carBottom() + 16), tx = sc.offsetLeft + "px";
+    if (t.style.top !== ty + "px") { t.style.top = ty + "px"; t.style.bottom = "auto"; }
+    if (t.style.left !== tx) t.style.left = tx;
+    const pad = Math.max(0, Math.round(ty + t.offsetHeight + 44 - SH())) + "px";
+    if (heroZone && heroZone.style.paddingBottom !== pad) heroZone.style.paddingBottom = pad;
+    return;
+  }
+  if (heroZone && heroZone.style.paddingBottom) heroZone.style.paddingBottom = "";
+  document.getElementById("pc-tyre").style.left = "";
   let top = Infinity;
   for (const p of roofPts) { tmp.copy(p); car.localToWorld(tmp); tmp.project(camera); top = Math.min(top, (-tmp.y * 0.5 + 0.5) * SH()); }
   const y = Math.max(12, top - 58 - 34) + "px";
   for (const id of ["pc-screen", "pc-engine"]) { const c = document.getElementById(id); if (c.style.top !== y) c.style.top = y; }
   // tire icon goes under the car, never on top of it
-  let bottom = 0;
-  for (const p of wheelPts) { tmp.copy(p); car.localToWorld(tmp); tmp.project(camera); bottom = Math.max(bottom, (-tmp.y * 0.5 + 0.5) * SH()); }
-  const t = document.getElementById("pc-tyre"), ty = Math.round(bottom + 14) + "px";
+  const t = document.getElementById("pc-tyre"), ty = Math.round(carBottom() + 14) + "px";
   if (t.style.top !== ty) { t.style.top = ty; t.style.bottom = "auto"; }
 }
 function drawWires() {
