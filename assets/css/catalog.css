@@ -1,0 +1,30 @@
+/* Tool.Cars shared catalog blocks (brand vs brand, head to head, brand filter). Loaded after site.css. */
+.xbt-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;background:var(--card);border:1px solid var(--line);border-radius:18px}
+table.xbt{border-collapse:collapse;width:100%;min-width:560px;font-size:15px}
+table.xbt th,table.xbt td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:center;vertical-align:middle}
+table.xbt thead th{font-family:var(--f-display);font-size:24px;line-height:1.1;background:var(--panel-2)}
+table.xbt thead th small{display:block;font-family:var(--f-body);font-size:12px;font-weight:500;color:var(--mut);margin-top:2px}
+table.xbt tbody th{text-align:left;color:var(--mut);font-weight:600;font-size:13px;letter-spacing:.3px;text-transform:uppercase;width:150px;position:sticky;left:0;background:var(--card)}
+table.xbt tr:last-child th,table.xbt tr:last-child td{border-bottom:0}
+table.xbt .y{color:var(--ok);font-weight:800}
+table.xbt .n{color:var(--mut)}
+.pc-brand{font-size:12px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--a-ink)}
+.xpills{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:8px}
+.xpills button{font:inherit;cursor:pointer;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:14px;font-weight:600}
+.xpills button small{margin-left:6px;color:var(--mut);font-weight:500}
+.xpills button.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.xpills button.on small{color:#ddd}
+.card .rate{font-size:13px;color:var(--mut)}
+.card .rate span{color:var(--a);letter-spacing:1px}
+.card .btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.card .btns .btn{flex:1;text-align:center;margin-top:0;white-space:nowrap}
+.card a.thumb{display:flex}
+[hidden]{display:none!important}
+.xnote{color:var(--mut);font-size:12px;margin-top:12px;text-align:center}
+@media(max-width:760px){
+  table.xbt{min-width:0;font-size:14px}
+  table.xbt th,table.xbt td{padding:10px 8px}
+  table.xbt thead th{font-size:20px}
+  table.xbt tbody th{width:88px;font-size:11px;letter-spacing:.2px}
+  table.xbt .btn.sm{padding:8px 10px;font-size:13px;white-space:normal}
+}

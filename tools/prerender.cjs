@@ -15,10 +15,12 @@ const SITE = "https://tool.goldenpasss.com/";
 const PAGES = [
   { file: "index.html", url: "", name: "Tool.Cars",
     ids: ["nav", "chart", "brandGrid"] },
-  { file: "icarzone/index.html", url: "icarzone/", name: "iCARZONE diagnostic tools",
-    ids: ["presets", "side0", "side1", "h2hBody", "cmpBody", "pills", "cats", "revs"] },
-  { file: "carplay-screen/index.html", url: "carplay-screen/", name: "CarPlay screens",
-    ids: ["presets", "side0", "side1", "h2hBody", "makes", "count", "grid", "cpCode", "cpText"] },
+  { file: "icarzone/index.html", url: "icarzone/", name: "Scan tools",
+    ids: ["presets", "side0", "side1", "h2hBody", "cmpBody", "pills", "cats", "revs", "xBrands", "xPresets", "xSide0", "xSide1", "xH2h", "xPills", "xCats"] },
+  { file: "carplay-screen/index.html", url: "carplay-screen/", name: "CarPlay",
+    ids: ["presets", "side0", "side1", "h2hBody", "makes", "count", "grid", "cpCode", "cpText", "xBrands", "xPresets", "xSide0", "xSide1", "xH2h", "xPills", "xCats"] },
+  { file: "dash-cams/index.html", url: "dash-cams/", name: "Dash cams", ids: ["xBrands", "xPresets", "xSide0", "xSide1", "xH2h", "xPills", "xCats"] },
+  { file: "tire-inflators/index.html", url: "tire-inflators/", name: "Tire inflators", ids: ["xBrands", "xPresets", "xSide0", "xSide1", "xH2h", "xPills", "xCats"] },
   { file: "icarzone/ma900/index.html", url: "icarzone/ma900/", name: "iCARZONE MA900 review", ids: [] }
 ];
 
@@ -47,7 +49,8 @@ function setHead(html, id, tag) {
     // offline and deterministic: built-in data only, no animation scripts
     await page.route("**/*", (r) => {
       const u = r.request().url();
-      if (!u.startsWith("file:") || /\/assets\/js\//.test(u)) return r.abort();
+      // page data and the shared catalog renderer run; animation scripts and remote files do not
+      if (!u.startsWith("file:") || (/\/assets\/js\//.test(u) && !/\/assets\/js\/catalog\.js$/.test(u))) return r.abort();
       return r.continue();
     });
     await page.goto("file://" + file, { waitUntil: "load" });
@@ -67,6 +70,8 @@ function setHead(html, id, tag) {
       try { out.compare = COMPARE; out.products = PRODUCTS; out.site = SITE; } catch (e) {}
       try { out.all = ALL.map((p) => ({ name: p.name, title: p.title, lo: p.lo, img: p.img, h: p.h })); out.store = STORE; } catch (e) {}
       try { out.buy = BUY_LINK; } catch (e) {}
+      try { out.items = ITEMS.filter((p) => p.link).map((p) => ({ name: p.name, img: p.img, price: p.price, link: p.link, brand: p.brand }));
+        out.brandNames = Object.fromEntries(BRANDS.map((b) => [b.id, b.name])); } catch (e) {}
       return out;
     }, pg.ids);
     await page.close();
@@ -98,8 +103,10 @@ function setHead(html, id, tag) {
       graph.push({ "@type": "WebSite", "@id": SITE + "#site", name: "Tool.Cars", url: SITE, publisher: { "@id": SITE + "#org" } });
     } else {
       const crumbs = [{ name: "Tool.Cars", item: SITE }];
-      if (pg.url.startsWith("icarzone/")) crumbs.push({ name: "iCARZONE diagnostic tools", item: SITE + "icarzone/" });
-      if (pg.url === "carplay-screen/") crumbs.push({ name: "CarPlay screens", item: url });
+      if (pg.url.startsWith("icarzone/")) crumbs.push({ name: "Scan tools", item: SITE + "icarzone/" });
+      if (pg.url === "carplay-screen/") crumbs.push({ name: "CarPlay", item: url });
+      if (pg.url === "dash-cams/") crumbs.push({ name: "Dash cams", item: url });
+      if (pg.url === "tire-inflators/") crumbs.push({ name: "Tire inflators", item: url });
       if (pg.url === "icarzone/ma900/") crumbs.push({ name: "MA900", item: url });
       graph.push({ "@type": "BreadcrumbList", itemListElement: crumbs.map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.name, item: c.item })) });
     }
@@ -124,6 +131,13 @@ function setHead(html, id, tag) {
         brand: { "@type": "Brand", name: "Youducar" }, ...(p.img ? { image: (p.img.indexOf("//") === 0 ? "https:" : "") + p.img } : {}),
         offers: { "@type": "Offer", price: String(p.lo), priceCurrency: "USD", url: got.store + "/products/" + p.h } }));
       graph.push({ "@type": "ItemList", name: "Youducar CarPlay and Android Auto head units by vehicle",
+        itemListElement: items.map((it, i) => ({ "@type": "ListItem", position: i + 1, item: it })) });
+    }
+    if (got.items && got.items.length) {
+      const items = got.items.slice(0, 40).map((p) => ({ "@type": "Product", name: p.name,
+        brand: { "@type": "Brand", name: got.brandNames[p.brand] || p.brand }, ...(p.img ? { image: p.img } : {}),
+        ...(p.price ? { offers: { "@type": "Offer", price: String(p.price), priceCurrency: "USD", url: p.link } } : {}) }));
+      graph.push({ "@type": "ItemList", name: pg.name + " compared on Tool.Cars",
         itemListElement: items.map((it, i) => ({ "@type": "ListItem", position: i + 1, item: it })) });
     }
     if (pg.url === "icarzone/ma900/") {

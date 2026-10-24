@@ -691,7 +691,7 @@ const frame = () => {
 renderer.setAnimationLoop(() => { if (visible) frame(); });
 // ---------- product cards wired to each fault ----------
 // SETTINGS: đổi thành true khi đã có brand máy bơm lốp (khung và dây sẽ hiện lại)
-const SHOW_TYRE_PRODUCT = false;
+const SHOW_TYRE_PRODUCT = true;
 document.getElementById("pc-tyre").hidden = !SHOW_TYRE_PRODUCT;
 const FAULTS = {
   engine: new THREE.Vector3(1.55, -0.34, 0.72),   // bonnet vent the smoke comes from
