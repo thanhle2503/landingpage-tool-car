@@ -721,12 +721,18 @@ for (const k of Object.keys(FAULTS)) {
 }
 const tmp = new THREE.Vector3();
 const roofPts = [new THREE.Vector3(0.84, 0, 0.78), new THREE.Vector3(-0.3, 0, 1.26), new THREE.Vector3(1.9, 0, 0.7)];
+const wheelPts = [new THREE.Vector3(AXLE_R, -0.95, 0), new THREE.Vector3(AXLE_F, -0.95, 0), new THREE.Vector3(AXLE_R, 0.95, 0), new THREE.Vector3(AXLE_F, 0.95, 0)];
 function placeIcons() {
-  if (!phone.matches) { for (const w of Object.values(wires)) if (w.card.id !== "pc-tyre") w.card.style.top = ""; return; }
+  if (!phone.matches) { for (const w of Object.values(wires)) { w.card.style.top = ""; w.card.style.bottom = ""; } return; }
   let top = Infinity;
   for (const p of roofPts) { tmp.copy(p); car.localToWorld(tmp); tmp.project(camera); top = Math.min(top, (-tmp.y * 0.5 + 0.5) * SH()); }
   const y = Math.max(12, top - 58 - 34) + "px";
   for (const id of ["pc-screen", "pc-engine"]) { const c = document.getElementById(id); if (c.style.top !== y) c.style.top = y; }
+  // tire icon goes under the car, never on top of it
+  let bottom = 0;
+  for (const p of wheelPts) { tmp.copy(p); car.localToWorld(tmp); tmp.project(camera); bottom = Math.max(bottom, (-tmp.y * 0.5 + 0.5) * SH()); }
+  const t = document.getElementById("pc-tyre"), ty = Math.round(bottom + 14) + "px";
+  if (t.style.top !== ty) { t.style.top = ty; t.style.bottom = "auto"; }
 }
 function drawWires() {
   placeIcons();
@@ -740,12 +746,15 @@ function drawWires() {
     const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
     const dx = fx - cx, dy = fy - cy;
     let ax, ay, c1x, c1y;
-    if (Math.abs(dx) / r.width > Math.abs(dy) / r.height) { ax = dx > 0 ? r.right : r.left; ay = cy; c1x = ax + Math.sign(dx) * Math.abs(fx - ax) * 0.6; c1y = ay; }
+    // the tire card sits below the car: its wire always leaves from the top of the card
+    if (k === "tyre") { ay = r.top; ax = cx; c1x = ax; c1y = ay - Math.max(60, Math.abs(fy - ay) * 0.6); }
+    else if (Math.abs(dx) / r.width > Math.abs(dy) / r.height) { ax = dx > 0 ? r.right : r.left; ay = cy; c1x = ax + Math.sign(dx) * Math.abs(fx - ax) * 0.6; c1y = ay; }
     else { ay = dy > 0 ? r.bottom : r.top; ax = cx; c1x = ax; c1y = ay + Math.sign(dy) * Math.abs(fy - ay) * 0.5; }
     // drop into the fault vertically: from above when the card sits higher, from below when lower
     const above = ay < fy;
     const lift = Math.max(70, Math.abs(fy - ay) * 0.9);
-    const c2x = fx, c2y = above ? Math.min(fy - lift, ay) : Math.max(fy + lift, ay);
+    // the tire wire comes up into the tyre from below, so it never runs across the car body
+    const c2x = fx, c2y = k === "tyre" ? Math.max(fy + 60, ay) : above ? Math.min(fy - lift, ay) : Math.max(fy + lift, ay);
     const d = `M${ax.toFixed(1)},${ay.toFixed(1)} C${c1x.toFixed(1)},${c1y.toFixed(1)} ${c2x.toFixed(1)},${c2y.toFixed(1)} ${fx.toFixed(1)},${fy.toFixed(1)}`;
     if (w.d !== d) {
       w.d = d;

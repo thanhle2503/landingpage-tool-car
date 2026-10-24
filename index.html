@@ -104,8 +104,8 @@ nav.top a b{display:none}
   /* both product cards on one line at the top: screen just right of the headline, scanner at the right edge */
   #pc-screen{left:max(30%,380px);top:9%;bottom:auto}
   #pc-engine{right:max(24px,3.2vw);top:9%}
-  /* tire card on the left, under the headline */
-  #pc-tyre{left:max(24px,3.2vw);right:auto;top:38%;bottom:auto}
+  /* tire card bottom-left, below the car (script keeps it clear of the car) */
+  #pc-tyre{left:max(24px,3.2vw);right:auto;top:auto;bottom:6%}
   /* header lines up with the full-width hero */
   header .wrap{max-width:none;padding-inline:max(24px,3.2vw)}
 }
@@ -197,7 +197,7 @@ section[id]{scroll-margin-top:72px}
 
   /* phones: the stage gets taller; each product becomes a round icon with a red dot,
      tapping it opens a small panel above the icon */
-  .stage{height:max(360px,100vw)}
+  .stage{height:calc(max(360px,100vw) + 30px)}
   .pc{width:58px;height:58px;padding:3px;border-radius:50%;overflow:visible}
   .pc .img{width:100%;height:100%;margin:0;border-radius:50%}
   .pc::after{content:"";position:absolute;top:-2px;right:-2px;width:12px;height:12px;border-radius:50%;background:var(--fault);border:2px solid #fff}
@@ -208,7 +208,7 @@ section[id]{scroll-margin-top:72px}
   .pc .info{bottom:auto;top:68px}
   #pc-screen .info{transform-origin:left top}
   #pc-engine .info{transform-origin:right top}
-  #pc-tyre .info{left:0}
+  #pc-tyre .info{left:0;border-color:var(--tyre)}
   .pc.on .info{opacity:1;transform:none;pointer-events:auto}
   .pc .fault{font-size:11px;margin-bottom:5px}
   .pc h3{font-size:13.5px;margin:0 0 8px;min-height:0;max-width:210px}
