@@ -89,3 +89,12 @@ html.tc-arrive::after{content:"";position:fixed;inset:0;background:#fff;z-index:
 .updated{display:block;color:var(--mut);font-size:13px;margin-top:10px}
 .notes{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:10px;color:var(--mut);font-size:15.5px}
 .notes b{color:var(--ink)}
+/* five product tabs: on phones each tab keeps its full label and the row scrolls sideways */
+@media(max-width:860px){
+  nav.top a,nav.top a:not(.on),nav.top a.on{flex:0 0 auto;min-width:max-content;padding:7px 12px}
+  nav.top{scrollbar-width:none}
+  nav.top::-webkit-scrollbar{display:none}
+}
+
+/* FAQ: two columns on wide screens, one on phones */
+@media(min-width:861px){.faq{max-width:1100px;display:grid;grid-template-columns:1fr 1fr;align-items:start}}

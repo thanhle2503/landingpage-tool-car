@@ -1,15 +1,17 @@
 # Tool.Cars
 
-> Tool.Cars (https://tool.goldenpasss.com/) is an independent review and comparison site for car tech you can buy and install yourself: OBD2 diagnostic scanners, bidirectional scan tools and battery testers from iCARZONE, and vehicle-specific CarPlay / Android Auto head units from Youducar. Every product page compares models side by side with prices in USD and links to the brand's official store. The site earns affiliate commissions on purchases.
+> Tool.Cars (https://tool.goldenpasss.com/) is an independent review and comparison site for car tech you can buy and install yourself, organised in one tab per product type: scan tools (iCARZONE, Innova, ROVE borescope), CarPlay (Youducar head units, Carlinkit wireless adapters and AI boxes), dash cams (ROVE, Fanttik) and tire inflators, jump starters and car vacuums (Fanttik). Each tab starts with a brand-vs-brand table, then a two-product comparison and every product with prices in USD, linking to the brand's official store or Amazon listing. The site earns affiliate commissions on purchases.
 
-Last updated: 2026-10-23. Prices are set by each brand and may change; always confirm on the product page.
+Last updated: 2026-10-24. Prices are set by each brand and may change; always confirm on the product page.
 
 ## Pages
 
 - [Tool.Cars home](https://tool.goldenpasss.com/): match a car symptom (check engine light, misfires, dead battery, no CarPlay) to the right tool, plus a general FAQ.
-- [iCARZONE diagnostic tools](https://tool.goldenpasss.com/icarzone/): every iCARZONE scanner by category (JU flagship, UR bidirectional, MA DIY testers, HD heavy-duty, OBD-I adapters), a full comparison table, head-to-head comparisons, buying notes and an FAQ on ABS/SRS scanners, EPB reset, bidirectional tools and tools under $100.
+- [Scan tools](https://tool.goldenpasss.com/icarzone/): iCARZONE vs Innova brand table and head-to-head (code readers, codes + battery, ABS/SRS, bidirectional, all-system tablets), 14 Innova tools and Innova/ROVE borescopes, plus every iCARZONE scanner by category (JU flagship, UR bidirectional, MA DIY testers, HD heavy-duty, OBD-I adapters), a full comparison table, head-to-head comparisons, buying notes and an FAQ on ABS/SRS scanners, EPB reset, bidirectional tools and tools under $100.
 - [iCARZONE MA900 review](https://tool.goldenpasss.com/icarzone/ma900/): 2-in-1 OBD2 scanner and 12V/24V battery tester, $69.99; features, specs, who it is for and an FAQ.
-- [CarPlay screen upgrades](https://tool.goldenpasss.com/carplay-screen/): Youducar Android head units by vehicle (Toyota, Ford, Chevy/GMC, Jeep, Honda, Ram and more), with wireless CarPlay and Android Auto, compared side by side; fitment FAQ.
+- [Dash cams](https://tool.goldenpasss.com/dash-cams/): ROVE vs Fanttik; ROVE R2-4K (front, 4K), R2-4K Dual (front + rear, 128GB card included), R3 (3-channel), Fanttik Luma K10 Apex 4K, plus ROVE microSD cards, mounts, CPL filters and hardwire kit.
+- [Tire inflators](https://tool.goldenpasss.com/tire-inflators/): Fanttik cordless tire inflators (X8, X9, X10, X11), jump starters (T8, T10, Beyond 10), bundles, car vacuums, cordless pressure washers and accessories.
+- [CarPlay](https://tool.goldenpasss.com/carplay-screen/): Youducar head units vs Carlinkit wireless adapters and AI boxes (sold on carlinkitcarplay.com and autokitcarplay.com), then Youducar Android head units by vehicle (Toyota, Ford, Chevy/GMC, Jeep, Honda, Ram and more), with wireless CarPlay and Android Auto, compared side by side; fitment FAQ.
 
 ## Quick facts
 
