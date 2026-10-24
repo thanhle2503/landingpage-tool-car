@@ -162,6 +162,26 @@
       var s = $("xShop"); if (s) s.scrollIntoView({ behavior: "smooth" });
     });
     window.TC_BOUND = true;
+    // customer reviews: a few featured cards, "See more" opens the rest; follows the brand filter
+    var revs = cfg.reviews || [], revOpen = false, REV_N = cfg.revShow || (window.matchMedia && matchMedia("(max-width:760px)").matches ? 2 : 4);
+    if ($("revs")) {
+      $("revs").innerHTML = revs.map(function (r) {
+        return '<div class="rev" data-brand="' + esc(r.brand) + '"><div class="stars">' + "★★★★★".slice(0, r.stars || 5) + '</div>' +
+          (r.title ? '<b class="rt">' + esc(r.title) + '</b>' : "") + '<q>' + esc(r.text) + '</q>' +
+          '<small><b>' + esc(r.who) + '</b> · ' + esc(r.prod) + '</small></div>';
+      }).join("");
+      if ($("revsMore")) $("revsMore").onclick = function () { revOpen = true; showRevs(); };
+    }
+    function showRevs() {
+      var n = 0;
+      document.querySelectorAll("#revs .rev").forEach(function (c) {
+        var ok = cur === "all" || c.getAttribute("data-brand") === cur;
+        c.hidden = !ok || (!revOpen && n >= REV_N);
+        if (ok) n++;
+      });
+      var sec = $("revsSec"); if (sec) sec.hidden = !n;
+      var b = $("revsMore"); if (b) { b.hidden = revOpen || n <= REV_N; b.textContent = "See more reviews (" + (n - REV_N) + ")"; }
+    }
     function filter(id, push) {
       cur = id;
       document.querySelectorAll("#xPills button").forEach(function (bt) { bt.classList.toggle("on", bt.getAttribute("data-brand") === id); });
@@ -178,6 +198,7 @@
       document.querySelectorAll(".xcat").forEach(function (c) { c.hidden = !c.querySelector(".xcard:not([hidden])"); });
       // whole sections that belong to one brand (e.g. a brand's own catalog further down)
       document.querySelectorAll("[data-brand-sec]").forEach(function (s) { s.hidden = id !== "all" && s.getAttribute("data-brand-sec").split(",").indexOf(id) < 0; });
+      showRevs();
       if (push && history.replaceState) {
         var u = new URL(location.href); if (id === "all") u.searchParams.delete("brand"); else u.searchParams.set("brand", id);
         history.replaceState(null, "", u.pathname + u.search + u.hash);

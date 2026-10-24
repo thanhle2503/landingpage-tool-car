@@ -35,3 +35,14 @@ table.xbt .n{color:var(--mut)}
 .hero .cta{display:flex;flex-wrap:nowrap;gap:8px}
 .hero .cta .btn{padding:10px 16px;font-size:14px;white-space:nowrap}
 @media(max-width:760px){.hero .cta .btn{flex:1 1 0;min-width:0;padding:10px 6px;font-size:12.5px;white-space:normal;line-height:1.2;text-align:center;justify-content:center}}
+
+/* customer reviews */
+.revs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.rev{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:8px}
+.rev .stars{color:var(--a);letter-spacing:2px;font-size:18px}
+.rev .rt{font-size:16px;color:var(--ink)}
+.rev q{font-size:15.5px;flex:1;color:var(--mut)}
+.rev small{color:var(--mut);font-size:13px}
+.rev small b{color:var(--ink)}
+.rev-more{text-align:center;margin-top:22px}
+.rev-more button{font:inherit;cursor:pointer;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:10px 22px;font-size:14px;font-weight:600}
