@@ -1,5 +1,5 @@
 /* Tool.Cars shared catalog: brand-vs-brand table, head-to-head picker and a
-   product grid with brand filter. Each product-type page sets the data in its
+   product grid with brand and type filters. Each product-type page sets the data in its
    own SETTINGS block and calls TC.render({...}). Element ids start with "x".
    Every product shown must have an affiliate link: items without one are skipped. */
 (function () {
@@ -21,8 +21,12 @@
     brands.forEach(function (b) { B[b.id] = b; });
     var items = cfg.items.filter(function (p) { return p.link && B[p.brand]; });
     var byId = {}; items.forEach(function (p) { byId[p.id] = p; });
-    // items whose category is listed in cats appear in the grid; the others only in the head-to-head
-    function shown() { var ids = (cfg.cats || []).map(function (c) { return c.id; }); return items.filter(function (p) { return ids.indexOf(p.cat) > -1; }); }
+    // product types for the type filter: each groups one or more categories (default: one type per category)
+    var types = cfg.types || (cfg.cats || []).map(function (c) { return { id: c.id, label: c.title, cats: [c.id] }; });
+    function typeOf(p) { for (var i = 0; i < types.length; i++) if (types[i].cats.indexOf(p.cat) > -1) return types[i].id; return ""; }
+    // items whose category belongs to a type appear in the grid; the others only in the head-to-head
+    function shown() { return items.filter(function (p) { return typeOf(p); }); }
+    var curType = "all";
     var params = new URLSearchParams(location.search);
     var cur = B[params.get("brand")] ? params.get("brand") : "all";
 
@@ -112,7 +116,7 @@
       var btns = (p.links || [{ label: b.cta || "See price", url: p.link }]).map(function (l, i) {
         return '<a class="btn sm' + (i ? ' ghost' : '') + '"' + EXT + ' href="' + esc(l.url) + '">' + esc(l.label) + '</a>';
       }).join("");
-      return '<div class="card xcard" data-brand="' + p.brand + '">' +
+      return '<div class="card xcard" data-brand="' + p.brand + '" data-type="' + typeOf(p) + '">' +
         '<a class="thumb' + (p.img ? '' : ' noimg') + '"' + EXT + ' href="' + esc(p.link) + '">' + (badge ? '<span class="badge">' + esc(badge) + '</span>' : '') +
         (p.img ? '<img loading="lazy" alt="' + esc(p.name) + '" src="' + esc(p.img) + '" onerror="this.remove()">' : '') + '</a>' +
         '<div class="body"><span class="kind">' + esc(b.name) + (p.kind ? ' · ' + esc(p.kind) : '') + '</span><h4>' + esc(p.short || p.name) + '</h4>' +
@@ -128,6 +132,18 @@
         return '<div class="cat xcat" id="cat-' + c.id + '"><h3 class="ct">' + esc(c.title) + '</h3>' + (c.desc ? '<p class="cd">' + esc(c.desc) + '</p>' : '') +
           '<div class="grid">' + list.map(card).join("") + '</div></div>';
       }).join("");
+    }
+    // one grid for every product, filtered by brand and by type
+    if ($("xGrid")) {
+      var list = [];
+      types.forEach(function (t) { list = list.concat(items.filter(function (p) { return typeOf(p) === t.id; })); });
+      $("xGrid").innerHTML = list.map(card).join("");
+    }
+    if ($("xTypes")) {
+      $("xTypes").innerHTML = '<button type="button" data-type="all">All types</button>' + types.map(function (t) {
+        return shown().some(function (p) { return typeOf(p) === t.id; }) ? '<button type="button" data-type="' + t.id + '">' + esc(t.label) + '</button>' : '';
+      }).join("");
+      $("xTypes").onclick = function (e) { var bt = e.target.closest("button"); if (!bt) return; curType = bt.getAttribute("data-type"); filter(cur, false); };
     }
     if ($("xPills")) {
       // extra: products a brand shows outside this grid (a number, or a label such as "250+")
@@ -149,7 +165,16 @@
     function filter(id, push) {
       cur = id;
       document.querySelectorAll("#xPills button").forEach(function (bt) { bt.classList.toggle("on", bt.getAttribute("data-brand") === id); });
-      document.querySelectorAll(".xcard").forEach(function (c) { c.hidden = id !== "all" && c.getAttribute("data-brand") !== id; });
+      // a type the chosen brand doesn't sell is hidden; fall back to all types
+      document.querySelectorAll("#xTypes button").forEach(function (bt) {
+        var t = bt.getAttribute("data-type");
+        bt.hidden = t !== "all" && !document.querySelector('#xGrid .xcard[data-type="' + t + '"]' + (id === "all" ? "" : '[data-brand="' + id + '"]'));
+        if (bt.hidden && t === curType) curType = "all";
+      });
+      document.querySelectorAll("#xTypes button").forEach(function (bt) { bt.classList.toggle("on", bt.getAttribute("data-type") === curType); });
+      document.querySelectorAll(".xcard").forEach(function (c) {
+        c.hidden = (id !== "all" && c.getAttribute("data-brand") !== id) || (curType !== "all" && c.getAttribute("data-type") !== curType);
+      });
       document.querySelectorAll(".xcat").forEach(function (c) { c.hidden = !c.querySelector(".xcard:not([hidden])"); });
       // whole sections that belong to one brand (e.g. a brand's own catalog further down)
       document.querySelectorAll("[data-brand-sec]").forEach(function (s) { s.hidden = id !== "all" && s.getAttribute("data-brand-sec").split(",").indexOf(id) < 0; });

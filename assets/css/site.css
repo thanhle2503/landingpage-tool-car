@@ -95,3 +95,6 @@ html.tc-arrive::after{content:"";position:fixed;inset:0;background:#fff;z-index:
   nav.top{scrollbar-width:none}
   nav.top::-webkit-scrollbar{display:none}
 }
+
+/* FAQ: two columns on wide screens, one on phones */
+@media(min-width:861px){.faq{max-width:1100px;display:grid;grid-template-columns:1fr 1fr;align-items:start}}

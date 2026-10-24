@@ -11,6 +11,8 @@ table.xbt .n{color:var(--mut)}
 .pc-brand{font-size:12px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--a-ink)}
 .xpills{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:8px}
 .xpills button{font:inherit;cursor:pointer;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:14px;font-weight:600}
+.xtypes{margin:0 0 22px}
+.xtypes button{padding:6px 13px;font-size:13px;font-weight:500}
 .xpills button small{margin-left:6px;color:var(--mut);font-weight:500}
 .xpills button.on{background:var(--ink);border-color:var(--ink);color:#fff}
 .xpills button.on small{color:#ddd}
@@ -28,3 +30,8 @@ table.xbt .n{color:var(--mut)}
   table.xbt tbody th{width:88px;font-size:11px;letter-spacing:.2px}
   table.xbt .btn.sm{padding:8px 10px;font-size:13px;white-space:normal}
 }
+
+/* hero buttons: one row, compact, on every screen */
+.hero .cta{display:flex;flex-wrap:nowrap;gap:8px}
+.hero .cta .btn{padding:10px 16px;font-size:14px;white-space:nowrap}
+@media(max-width:760px){.hero .cta .btn{flex:1 1 0;min-width:0;padding:10px 6px;font-size:12.5px;white-space:normal;line-height:1.2;text-align:center;justify-content:center}}

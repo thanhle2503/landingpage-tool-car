@@ -16,11 +16,11 @@ const PAGES = [
   { file: "index.html", url: "", name: "Tool.Cars",
     ids: ["nav", "chart", "brandGrid"] },
   { file: "icarzone/index.html", url: "icarzone/", name: "Scan tools",
-    ids: ["presets", "side0", "side1", "h2hBody", "cmpBody", "pills", "cats", "revs", "xBrands", "xPresets", "xSide0", "xSide1", "xH2h", "xPills", "xCats"] },
+    ids: ["revs", "xBrands", "xPresets", "xSide0", "xSide1", "xH2h", "xPills", "xTypes", "xGrid"] },
   { file: "carplay-screen/index.html", url: "carplay-screen/", name: "CarPlay",
-    ids: ["presets", "side0", "side1", "h2hBody", "makes", "count", "grid", "cpCode", "cpText", "xBrands", "xPresets", "xSide0", "xSide1", "xH2h", "xPills", "xCats"] },
-  { file: "dash-cams/index.html", url: "dash-cams/", name: "Dash cams", ids: ["xBrands", "xPresets", "xSide0", "xSide1", "xH2h", "xPills", "xCats"] },
-  { file: "tire-inflators/index.html", url: "tire-inflators/", name: "Tire inflators", ids: ["xBrands", "xPresets", "xSide0", "xSide1", "xH2h", "xPills", "xCats"] },
+    ids: ["makes", "count", "grid", "cpCode", "cpText", "xBrands", "xPresets", "xSide0", "xSide1", "xH2h", "xPills", "xTypes", "xGrid"] },
+  { file: "dash-cams/index.html", url: "dash-cams/", name: "Dash cams", ids: ["xBrands", "xPresets", "xSide0", "xSide1", "xH2h", "xPills", "xTypes", "xGrid"] },
+  { file: "tire-inflators/index.html", url: "tire-inflators/", name: "Tire inflators", ids: ["xBrands", "xPresets", "xSide0", "xSide1", "xH2h", "xPills", "xTypes", "xGrid"] },
   { file: "icarzone/ma900/index.html", url: "icarzone/ma900/", name: "iCARZONE MA900 review", ids: [] }
 ];
 

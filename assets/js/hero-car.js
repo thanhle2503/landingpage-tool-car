@@ -736,7 +736,7 @@ function placeIcons() {
     const ty = Math.round(carBottom() + 16), tx = sc.offsetLeft + "px";
     if (t.style.top !== ty + "px") { t.style.top = ty + "px"; t.style.bottom = "auto"; }
     if (t.style.left !== tx) t.style.left = tx;
-    const pad = Math.max(0, Math.round(ty + t.offsetHeight + 44 - SH())) + "px";
+    const pad = Math.max(0, Math.round(ty + t.offsetHeight + 20 - SH())) + "px";
     if (heroZone && heroZone.style.paddingBottom !== pad) heroZone.style.paddingBottom = pad;
     return;
   }
