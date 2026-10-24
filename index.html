@@ -19,6 +19,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <style>
+:root{--tyre:#f5b800}
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth}
 body{font-size:16px;line-height:1.6}
@@ -58,6 +59,7 @@ nav.top a b{display:none}
 #wires .end{fill:#fff;stroke:#9a9893;stroke-width:1}
 #wires g.on .w{stroke:var(--wc,var(--a));opacity:1;stroke-width:2}
 #wires g.k-screen{--wc:var(--elec)}
+#wires g.k-tyre{--wc:var(--tyre)}
 #wires g.on .halo{opacity:.85}
 #wires g.on .flow{opacity:1;animation:flow .6s linear infinite}
 #wires g.on .end{stroke:var(--wc,var(--a));fill:var(--wc,var(--a))}
@@ -75,6 +77,7 @@ nav.top a b{display:none}
 .pc .go:hover{background:var(--a-d)}
 .pc[hidden]{display:none}
 .pc.on{border-color:var(--a);box-shadow:0 0 0 4px rgba(255,107,26,.18),0 0 34px rgba(255,107,26,.42),0 14px 30px -20px rgba(40,30,20,.45)}
+#pc-tyre.on{border-color:var(--tyre);box-shadow:0 0 0 4px rgba(245,184,0,.2),0 0 34px rgba(245,184,0,.45),0 14px 30px -20px rgba(40,30,20,.45)}
 #pc-screen.on{border-color:var(--elec);box-shadow:0 0 0 4px rgba(30,136,255,.18),0 0 34px rgba(30,136,255,.42),0 14px 30px -20px rgba(40,30,20,.45)}
 .pc.soon{border-style:dashed;background:#fbfaf8}
 .pc.soon .img{display:grid;place-items:center;color:#b3b0aa}
@@ -101,7 +104,8 @@ nav.top a b{display:none}
   /* both product cards on one line at the top: screen just right of the headline, scanner at the right edge */
   #pc-screen{left:max(30%,380px);top:9%;bottom:auto}
   #pc-engine{right:max(24px,3.2vw);top:9%}
-  #pc-tyre{left:auto;right:max(24px,3.2vw);bottom:13%}
+  /* tire card on the left, under the headline */
+  #pc-tyre{left:max(24px,3.2vw);right:auto;top:38%;bottom:auto}
   /* header lines up with the full-width hero */
   header .wrap{max-width:none;padding-inline:max(24px,3.2vw)}
 }
