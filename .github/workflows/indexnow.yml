@@ -1,0 +1,23 @@
+# Tells Bing (and the other IndexNow search engines) about every page in sitemap.xml
+# after each change to main, so updates show up in Bing and ChatGPT search fast.
+name: IndexNow
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wait for GitHub Pages to publish
+        run: sleep 90
+      - name: Send sitemap URLs to IndexNow
+        run: |
+          KEY=adf2034f3bbcdc6728abfcbb516bad04
+          URLS=$(grep -o '<loc>[^<]*' sitemap.xml | sed 's/<loc>//' | jq -R . | jq -sc .)
+          BODY=$(jq -nc --arg key "$KEY" --argjson urls "$URLS" \
+            '{host:"tool.goldenpasss.com", key:$key, keyLocation:("https://tool.goldenpasss.com/"+$key+".txt"), urlList:$urls}')
+          echo "$BODY"
+          curl -sS -w "\nHTTP %{http_code}\n" -H "Content-Type: application/json; charset=utf-8" \
+            -d "$BODY" https://api.indexnow.org/indexnow

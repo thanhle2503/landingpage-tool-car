@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="/assets/img/logo-t.svg"><link rel="icon" type="image/png" sizes="512x512" href="/assets/img/logo-t-512.png"><link rel="apple-touch-icon" href="/assets/img/logo-t-512.png">
+<title>About Tool.Cars – How We Compare Car Tech | Tool.Cars</title>
+<meta name="description" content="Who runs Tool.Cars, how products are picked and compared, where prices, specs and reviews come from, and how the site earns affiliate commissions.">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18429283112"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-18429283112');
+</script>
+<style>
+:root{--a:#ff6b1a;--a-d:#e85a0c;--a-l:#2a1a10;--ink:#f3f4f6;--mut:#9aa1ad;--bg:#0e1015;--card:#171a21;--line:#272c37}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:0;background:rgba(14,16,21,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:5}
+header .wrap{display:flex;justify-content:space-between;align-items:center;height:60px}
+.logo{font-weight:800;font-size:22px;letter-spacing:.5px}.logo span{color:var(--a)}
+.btn{display:inline-block;background:var(--a);color:#fff;padding:13px 28px;border-radius:999px;font-weight:700;transition:.2s;box-shadow:0 6px 20px rgba(255,107,26,.3)}
+.btn:hover{background:var(--a-d);transform:translateY(-2px)}
+.btn.sm{padding:9px 20px;font-size:14px;box-shadow:none}
+.btn.ghost{background:transparent;border:1px solid var(--line);box-shadow:none}
+.btn.ghost:hover{background:var(--card)}
+.hero{padding:56px 0 36px;background:radial-gradient(1000px 420px at 85% -10%,#3a1f0f,transparent)}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:44px;align-items:center}
+.tag{display:inline-block;background:var(--a-l);color:#ffa66b;padding:5px 16px;border-radius:999px;font-size:13px;font-weight:700}
+h1{font-size:clamp(32px,5vw,52px);line-height:1.12;margin:16px 0}
+h1 em{font-style:normal;color:var(--a)}
+.hero p{color:var(--mut);font-size:18px;margin-bottom:26px;max-width:520px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.collage{position:relative;height:420px}
+.collage img{position:absolute;object-fit:contain;padding:14px;border-radius:28px;border:6px solid var(--card);box-shadow:0 18px 40px rgba(0,0,0,.5);background:#fff}
+.collage .a{width:62%;height:78%;left:0;top:0;transform:rotate(-3deg)}
+.collage .b{width:54%;height:60%;right:0;bottom:0;transform:rotate(3deg)}
+.perks{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:16px 0 12px}
+.perk{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;font-size:14px;text-align:center}
+.perk b{display:block;font-size:24px}
+section{padding:44px 0}
+h2{font-size:clamp(26px,3.6vw,36px);margin-bottom:8px;text-align:center}
+.sub{color:var(--mut);margin:0 auto 32px;text-align:center;max-width:620px}
+.pills{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:12px}
+.pills a{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 18px;font-size:14px;font-weight:600;transition:.2s}
+.pills a:hover{border-color:var(--a);color:var(--a)}
+.cat{margin-top:44px;scroll-margin-top:80px}
+.cat h3.ct{font-size:24px;display:flex;align-items:center;gap:10px}
+.cat h3.ct:after{content:"";flex:1;height:1px;background:var(--line)}
+.cat p.cd{color:var(--mut);font-size:15px;margin:4px 0 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:24px;overflow:hidden;display:flex;flex-direction:column;transition:.25s}
+.card:hover{box-shadow:0 16px 40px rgba(255,107,26,.25);transform:translateY(-4px);border-color:var(--a)}
+.thumb{aspect-ratio:4/3;background:#fff;display:flex;align-items:center;justify-content:center;font-size:76px;position:relative;overflow:hidden}
+.thumb.noimg{background:linear-gradient(135deg,#2a1a10,#1b1f29)}
+.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:18px;transition:.4s}
+.card:hover .thumb img{transform:scale(1.05)}
+.badge{position:absolute;top:14px;left:14px;background:var(--a);color:#fff;font-size:13px;font-weight:800;padding:4px 14px;border-radius:999px;z-index:1}
+.body{padding:20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.kind{font-size:12px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--a)}
+.body h4{font-size:18px;line-height:1.3}
+.body ul{list-style:none;padding:0;color:var(--mut);font-size:14px;flex:1}
+.body li:before{content:"✓ ";color:var(--a);font-weight:800}
+.body .btn{text-align:center;margin-top:10px}
+.body .pr{font-size:20px;font-weight:800}
+.body .pr s{font-size:14px;color:var(--mut);font-weight:600;margin-left:4px}
+.revs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.rev{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:10px}
+.stars{color:var(--a);letter-spacing:2px;font-size:18px}
+.rev q{font-size:16px;flex:1}
+.rev small{color:var(--mut);font-size:13px}
+.rev small b{color:var(--ink)}
+.note{text-align:center;color:var(--mut);font-size:12px;margin-top:16px}
+.final{background:linear-gradient(135deg,#2a1a10,var(--card));border:1px solid var(--line);border-radius:28px;padding:44px 24px;text-align:center}
+.final h2{margin-bottom:12px}
+footer{border-top:1px solid var(--line);padding:30px 0;color:var(--mut);font-size:13px;margin-top:24px}
+footer p{margin-bottom:8px}
+footer a.pp{text-decoration:underline;font-weight:600;color:var(--ink)}
+@media(max-width:760px){.hero .wrap{grid-template-columns:1fr}.collage{height:320px}.perks{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}}
+
+.cmp-toggle{text-align:center;margin-top:10px}
+.cmp-toggle button{font:inherit;cursor:pointer;border:0}
+.cmp-panel{display:none;margin-top:26px;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:22px}
+.cmp-panel.open{display:block}
+.cmp-panel .pills{margin-bottom:16px}
+.cmp-panel .pills button{font:inherit;cursor:pointer;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:8px 18px;font-size:14px;font-weight:600;transition:.2s}
+.cmp-panel .pills button:hover{border-color:var(--a);color:var(--a)}
+.cmp-panel .pills button.on{background:var(--a);border-color:var(--a);color:#fff}
+.cmp-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table.cmp{border-collapse:collapse;width:100%;min-width:860px;font-size:14px}
+table.cmp th,table.cmp td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:center;vertical-align:middle}
+table.cmp thead th{color:var(--mut);font-size:12px;letter-spacing:.6px;text-transform:uppercase;position:sticky;top:0;background:var(--card)}
+table.cmp td:first-child,table.cmp th:first-child{text-align:left;position:sticky;left:0;background:var(--card);min-width:170px}
+table.cmp td:first-child b{display:block;font-size:15px}
+table.cmp td:first-child small{color:var(--mut);font-size:12px}
+table.cmp .y{color:#4ade80;font-weight:800}
+table.cmp .n{color:var(--mut)}
+table.cmp .pr{font-weight:800;white-space:nowrap}
+.cmp-note{color:var(--mut);font-size:12px;margin-top:12px;text-align:center}
+
+/* nav */
+header .wrap{gap:12px}
+nav.top{display:flex;gap:4px;font-size:14px;font-weight:600}
+nav.top a{padding:6px 12px;border-radius:999px;color:var(--mut)}
+nav.top a:hover{color:var(--ink)}
+nav.top a.on{color:var(--ink);background:var(--card);border:1px solid var(--line)}
+
+/* head-to-head */
+.presets{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:20px}
+.presets button{font:inherit;color:inherit;cursor:pointer;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 16px;font-size:14px;font-weight:600;transition:.2s}
+.presets button:hover{border-color:var(--a);color:var(--a)}
+.presets button.on{background:var(--a);border-color:var(--a);color:#fff}
+.h2h{display:grid;grid-template-columns:1fr 56px 1fr;gap:14px;align-items:stretch}
+.vs{display:flex;align-items:center;justify-content:center}
+.vs span{width:52px;height:52px;border-radius:50%;background:var(--a);display:flex;align-items:center;justify-content:center;font-weight:800;box-shadow:0 0 0 6px var(--a-l)}
+.side{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.side select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:9px 10px;font-size:14px;width:100%;cursor:pointer}
+.side select:focus{outline:2px solid var(--a);outline-offset:1px}
+.pc-img{aspect-ratio:4/3;background:#fff;border-radius:16px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.pc-img img{width:100%;height:100%;object-fit:contain;padding:16px}
+.pc-name{font-weight:700;font-size:16px;line-height:1.35;min-height:2.7em}
+.pc-price{font-size:24px;font-weight:800}
+.h2h-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:18px;background:var(--card);border:1px solid var(--line);border-radius:22px}
+table.h2ht{border-collapse:collapse;width:100%;min-width:520px;font-size:15px}
+table.h2ht th,table.h2ht td{padding:12px 16px;border-bottom:1px solid var(--line);text-align:center;vertical-align:middle;width:40%}
+table.h2ht tr:last-child th,table.h2ht tr:last-child td{border-bottom:0}
+table.h2ht th{text-align:left;color:var(--mut);font-weight:600;font-size:13px;letter-spacing:.4px;text-transform:uppercase;width:20%}
+table.h2ht td.win{color:#4ade80;font-weight:800}
+table.h2ht td.win:after{content:" ★";font-size:12px}
+table.h2ht .y{color:#4ade80;font-weight:800}
+table.h2ht .n{color:var(--mut)}
+.allspecs{margin-top:26px;text-align:center}
+.allspecs summary{display:inline-block;cursor:pointer;border:1px solid var(--line);border-radius:999px;padding:9px 20px;font-weight:700;font-size:14px;list-style:none}
+.allspecs summary::-webkit-details-marker{display:none}
+.allspecs summary:hover{background:var(--card)}
+.allspecs[open] summary{margin-bottom:6px}
+.allspecs .cmp-panel{text-align:left}
+@media(max-width:760px){.h2h{grid-template-columns:1fr 1fr}.vs{display:none}.pc-price{font-size:20px}.pc-name{font-size:14px}}
+/* mobile: brand switcher + clear section bands */
+nav.top a b{display:none}
+section[id],.cat{scroll-margin-top:72px}
+@media(max-width:860px){
+  header .wrap{flex-wrap:wrap;height:auto;padding-top:10px;row-gap:8px}
+  header .wrap>.logo{flex:1}
+  nav.top{order:3;width:100%;gap:6px;padding-bottom:10px;overflow-x:auto}
+  nav.top a,nav.top a:not(.on){display:flex;flex-direction:column;justify-content:center;align-items:center;flex:1;min-width:0;text-align:center;white-space:nowrap;line-height:1.2;padding:7px 8px;background:var(--card);border:1px solid var(--line);border-radius:14px;color:var(--ink)}
+  nav.top a.on{background:var(--a);border-color:var(--a);color:#fff}
+  nav.top a b{display:block;font-size:14px}
+  nav.top a b+span{font-size:11px;font-weight:600;opacity:.75}
+  nav.top a:first-child{flex:0 0 auto;padding:7px 12px}
+  section[id],.cat{scroll-margin-top:130px}
+}
+@media(max-width:760px){
+  .collage{height:240px}
+  main>section{padding:36px 0}
+  main>section:not(.hero){border-top:1px solid var(--line)}
+  main>section:nth-of-type(even){background:#12151c}
+  main>section:not(.hero) h2{padding-bottom:12px;position:relative}
+  main>section:not(.hero) h2:after{content:"";position:absolute;left:50%;bottom:0;width:44px;height:3px;margin-left:-22px;border-radius:3px;background:var(--a)}
+  .sub{margin-bottom:24px}
+}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script>try{if(sessionStorage.getItem("tc-transit")){document.documentElement.classList.add("tc-arrive");setTimeout(function(){document.documentElement.classList.remove("tc-arrive")},3000)}}catch(e){}</script>
+  <!-- Lasso click tracking -->
+  <script type="text/javascript" src="https://js.codedrink.com/snippet.min.js" defer></script>
+  <script type="text/javascript" defer>
+    document.addEventListener("LSAFFEventLoaded", function(e) { e.detail.init(); });
+  </script>
+<style>
+.about{max-width:760px}
+.hero .wrap.about{display:block}
+.hero .about p{margin-top:16px}
+.about h2{margin:8px 0 12px}
+.about p,.about li{color:var(--mut)}
+.about ul{padding-left:20px;display:grid;gap:8px}
+.about b{color:var(--ink)}
+.about .tabs a{color:var(--a);font-weight:600}
+</style>
+<script type="application/ld+json" id="ld-main">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "AboutPage",
+   "@id": "https://tool.goldenpasss.com/about/#page",
+   "url": "https://tool.goldenpasss.com/about/",
+   "name": "About Tool.Cars – How We Compare Car Tech | Tool.Cars",
+   "description": "Who runs Tool.Cars, how products are picked and compared, where prices, specs and reviews come from, and how the site earns affiliate commissions.",
+   "dateModified": "2026-10-24",
+   "isPartOf": {
+    "@id": "https://tool.goldenpasss.com/#site"
+   },
+   "publisher": {
+    "@id": "https://tool.goldenpasss.com/#org"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Tool.Cars",
+     "item": "https://tool.goldenpasss.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "About",
+     "item": "https://tool.goldenpasss.com/about/"
+    }
+   ]
+  }
+ ]
+}
+</script>
+<meta id="og-type" property="og:type" content="website">
+<meta id="og-site" property="og:site_name" content="Tool.Cars">
+<meta id="og-title" property="og:title" content="About Tool.Cars – How We Compare Car Tech | Tool.Cars">
+<meta id="og-desc" property="og:description" content="Who runs Tool.Cars, how products are picked and compared, where prices, specs and reviews come from, and how the site earns affiliate commissions.">
+<meta id="og-url" property="og:url" content="https://tool.goldenpasss.com/about/">
+<meta id="og-img" property="og:image" content="https://tool.goldenpasss.com/assets/img/logo-t-512.png">
+<meta id="tw-card" name="twitter:card" content="summary_large_image">
+<link rel="canonical" id="canonical" href="https://tool.goldenpasss.com/about/">
+</head>
+<body>
+
+<header><div class="wrap">
+  <a class="logo" href="../">Tool<span>.Cars</span></a>
+  <nav class="top">
+    <a href="../"><span>All brands</span></a>
+    <a href="../icarzone/"><span>Scan tools</span></a>
+    <a href="../carplay-screen/"><span>CarPlay</span></a>
+    <a href="../dash-cams/"><span>Dash cams</span></a>
+    <a href="../tire-inflators/"><span>Tire inflators</span></a>
+  </nav>
+  <a class="btn sm" href="../">All brands</a>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap about">
+  <h1>About <em>Tool.Cars</em></h1>
+  <p>Tool.Cars is an independent site that compares car tech you can buy and install yourself: OBD2 scan tools, CarPlay screens and adapters, dash cams, tire inflators and jump starters. It is not the official website of any brand it lists.</p>
+</div></section>
+
+<section><div class="wrap about">
+  <h2>How we compare</h2>
+  <ul>
+    <li><b>One tab per product type.</b> Each tab starts with a brand-vs-brand table, then lets you put any two products side by side.</li>
+    <li><b>Prices and specs</b> come from each brand's official store or its Amazon listing, checked on the date shown at the bottom of each page.</li>
+    <li><b>Customer reviews</b> are real buyer reviews copied from each brand's official store. We do not write or edit them.</li>
+    <li><b>Our notes</b> say which product fits which driver, based on published specs, prices and buyer reviews. We do not run lab tests.</li>
+  </ul>
+</div></section>
+
+<section><div class="wrap about">
+  <h2>How the site makes money</h2>
+  <p>Product buttons are affiliate links. If you buy through them, Tool.Cars may earn a commission at no extra cost to you. As an Amazon Associate, Tool.Cars earns from qualifying purchases. Prices are always set by the store, so always confirm the price on the product page before you buy.</p>
+</div></section>
+
+<section><div class="wrap about">
+  <h2>What you will find here</h2>
+  <ul class="tabs">
+    <li><a href="../icarzone/">Scan tools</a>: iCARZONE vs Innova OBD2 scanners, battery testers and borescopes.</li>
+    <li><a href="../carplay-screen/">CarPlay</a>: Youducar vehicle-specific screens vs Carlinkit wireless adapters and AI boxes.</li>
+    <li><a href="../dash-cams/">Dash cams</a>: ROVE vs Fanttik front, front + rear and 3-channel cameras.</li>
+    <li><a href="../tire-inflators/">Tire inflators</a>: Fanttik cordless inflators, jump starters and car vacuums.</li>
+  </ul>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <p><b>Affiliate disclosure:</b> This site contains affiliate links. If you buy through these links we may earn a commission, at no extra cost to you.</p>
+  <p><b>Amazon Associates:</b> As an Amazon Associate, Tool.Cars earns from qualifying purchases. Amazon and the Amazon logo are trademarks of Amazon.com, Inc. or its affiliates. Product prices and availability are accurate as of the date shown and may change; the price and availability shown on Amazon at the time of purchase apply to that purchase.</p>
+  <p>Tool.Cars is an independent review and comparison site and is not the official website of any brand listed. Brands, images and product names belong to their respective owners.</p>
+  <p><a class="pp" href="https://www.termsfeed.com/live/6e161ee9-1a39-40c5-96cf-be90dc41183e" target="_blank" rel="noopener">Privacy Policy</a> · <a class="pp" href="../about/">About Tool.Cars</a></p>
+  <p>Last updated: <time datetime="2026-10-24">October 24, 2026</time></p>
+  <p>© <span id="y">2026</span> Tool.Cars</p>
+</div></footer>
+
+<script src="../assets/js/gsap.min.js" defer></script>
+<script src="../assets/js/transit.js" defer></script>
+</body>
+</html>

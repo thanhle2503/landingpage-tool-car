@@ -21,6 +21,7 @@ const PAGES = [
     ids: ["makes", "count", "grid", "cpCode", "cpText", "revs", "xBrands", "xPresets", "xSide0", "xSide1", "xH2h", "xPills", "xTypes", "xGrid"] },
   { file: "dash-cams/index.html", url: "dash-cams/", name: "Dash cams", ids: ["revs", "xBrands", "xPresets", "xSide0", "xSide1", "xH2h", "xPills", "xTypes", "xGrid"] },
   { file: "tire-inflators/index.html", url: "tire-inflators/", name: "Tire inflators", ids: ["revs", "xBrands", "xPresets", "xSide0", "xSide1", "xH2h", "xPills", "xTypes", "xGrid"] },
+  { file: "about/index.html", url: "about/", name: "About", ids: [] },
 ];
 
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;");
@@ -90,11 +91,11 @@ function setHead(html, id, tag) {
     /* ---------- JSON-LD ---------- */
     const url = SITE + pg.url;
     const graph = [];
-    graph.push({ "@type": "WebPage", "@id": url + "#page", url, name: got.title, description: got.desc,
+    graph.push({ "@type": pg.url === "about/" ? "AboutPage" : "WebPage", "@id": url + "#page", url, name: got.title, description: got.desc,
       ...(got.updated ? { dateModified: got.updated } : {}), isPartOf: { "@id": SITE + "#site" }, publisher: { "@id": SITE + "#org" } });
     if (!pg.url) {
       graph.push({ "@type": "Organization", "@id": SITE + "#org", name: "Tool.Cars", url: SITE,
-        description: "Independent review and comparison site for DIY car diagnostic tools and CarPlay screen upgrades." });
+        description: "Independent comparison site for DIY car tech: OBD2 scan tools, CarPlay screens and adapters, dash cams, tire inflators and jump starters." });
       graph.push({ "@type": "WebSite", "@id": SITE + "#site", name: "Tool.Cars", url: SITE, publisher: { "@id": SITE + "#org" } });
     } else {
       const crumbs = [{ name: "Tool.Cars", item: SITE }];
@@ -102,6 +103,7 @@ function setHead(html, id, tag) {
       if (pg.url === "carplay-screen/") crumbs.push({ name: "CarPlay", item: url });
       if (pg.url === "dash-cams/") crumbs.push({ name: "Dash cams", item: url });
       if (pg.url === "tire-inflators/") crumbs.push({ name: "Tire inflators", item: url });
+      if (pg.url === "about/") crumbs.push({ name: "About", item: url });
       graph.push({ "@type": "BreadcrumbList", itemListElement: crumbs.map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.name, item: c.item })) });
     }
     if (got.faq.length) {
@@ -137,6 +139,14 @@ function setHead(html, id, tag) {
     const ld = '<script type="application/ld+json" id="ld-main">\n' +
       JSON.stringify({ "@context": "https://schema.org", "@graph": graph }, null, 1).replace(/</g, "\\u003c") + "\n</script>";
     html = setHead(html, "ld-main", ld);
+    /* ---------- share cards (Facebook, Zalo, X...) ---------- */
+    const ogImg = /^https?:/.test(got.h1img) ? got.h1img : SITE + "assets/img/logo-t-512.png";
+    [["og-type", "property", "og:type", "website"], ["og-site", "property", "og:site_name", "Tool.Cars"],
+     ["og-title", "property", "og:title", got.title], ["og-desc", "property", "og:description", got.desc],
+     ["og-url", "property", "og:url", url], ["og-img", "property", "og:image", ogImg],
+     ["tw-card", "name", "twitter:card", "summary_large_image"]].forEach(([id, attr, key, val]) => {
+      html = setHead(html, id, '<meta id="' + id + '" ' + attr + '="' + key + '" content="' + esc(val) + '">');
+    });
     html = setHead(html, "canonical", '<link rel="canonical" id="canonical" href="' + url + '">');
 
     fs.writeFileSync(file, html);
