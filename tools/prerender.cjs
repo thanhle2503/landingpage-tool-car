@@ -21,7 +21,6 @@ const PAGES = [
     ids: ["makes", "count", "grid", "cpCode", "cpText", "revs", "xBrands", "xPresets", "xSide0", "xSide1", "xH2h", "xPills", "xTypes", "xGrid"] },
   { file: "dash-cams/index.html", url: "dash-cams/", name: "Dash cams", ids: ["revs", "xBrands", "xPresets", "xSide0", "xSide1", "xH2h", "xPills", "xTypes", "xGrid"] },
   { file: "tire-inflators/index.html", url: "tire-inflators/", name: "Tire inflators", ids: ["revs", "xBrands", "xPresets", "xSide0", "xSide1", "xH2h", "xPills", "xTypes", "xGrid"] },
-  { file: "icarzone/ma900/index.html", url: "icarzone/ma900/", name: "iCARZONE MA900 review", ids: [] }
 ];
 
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;");
@@ -85,10 +84,6 @@ function setHead(html, id, tag) {
       html = html.replace(new RegExp(a + ' href="[^"]*"( target="_blank" rel="sponsored noopener")?', "g"),
         a + ' href="' + esc(got.links[a]) + '" target="_blank" rel="sponsored noopener"');
     }
-    if (pg.file === "icarzone/ma900/index.html" && got.buy) {
-      html = html.replace(/data-buy href="[^"]*"( target="_blank" rel="sponsored noopener")?/g,
-        'data-buy href="' + esc(got.buy) + '" target="_blank" rel="sponsored noopener"');
-    }
     const year = new Date().getFullYear();
     html = html.replace(/<span id="y">[^<]*<\/span>/, '<span id="y">' + year + "</span>");
 
@@ -107,7 +102,6 @@ function setHead(html, id, tag) {
       if (pg.url === "carplay-screen/") crumbs.push({ name: "CarPlay", item: url });
       if (pg.url === "dash-cams/") crumbs.push({ name: "Dash cams", item: url });
       if (pg.url === "tire-inflators/") crumbs.push({ name: "Tire inflators", item: url });
-      if (pg.url === "icarzone/ma900/") crumbs.push({ name: "MA900", item: url });
       graph.push({ "@type": "BreadcrumbList", itemListElement: crumbs.map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.name, item: c.item })) });
     }
     if (got.faq.length) {
@@ -139,12 +133,6 @@ function setHead(html, id, tag) {
         ...(p.price ? { offers: { "@type": "Offer", price: String(p.price), priceCurrency: "USD", url: p.link } } : {}) }));
       graph.push({ "@type": "ItemList", name: pg.name + " compared on Tool.Cars",
         itemListElement: items.map((it, i) => ({ "@type": "ListItem", position: i + 1, item: it })) });
-    }
-    if (pg.url === "icarzone/ma900/") {
-      graph.push({ "@type": "Product", name: "iCARZONE MA900 OBD2 Scanner & 12V/24V Battery Tester", sku: "MA900",
-        brand: { "@type": "Brand", name: "iCARZONE" }, image: url + "ma900.png",
-        description: "2-in-1 handheld tool: full OBD2 code reader (all 10 modes, live data, freeze frame, I/M readiness) plus 12V/24V battery, cranking and charging system tester. Lifetime free updates, no subscription.",
-        offers: { "@type": "Offer", price: "69.99", priceCurrency: "USD", url: "https://www.icarzone.com/products/ma900" } });
     }
     const ld = '<script type="application/ld+json" id="ld-main">\n' +
       JSON.stringify({ "@context": "https://schema.org", "@graph": graph }, null, 1).replace(/</g, "\\u003c") + "\n</script>";

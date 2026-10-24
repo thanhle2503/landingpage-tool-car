@@ -10,7 +10,6 @@
 
   // Brand names + a stand-in photo for links that carry no picture (header tabs)
   const DEST = {
-    "icarzone/ma900/": { name: "MA900 scanner & battery tester", img: "https://www.icarzone.com/cdn/shop/files/MA900_2186dd7e-3f91-436d-9f80-54f632fb4097.png?v=1781594039&width=900" },
     "icarzone/": { name: "iCARZONE diagnostic tools", img: "https://www.icarzone.com/cdn/shop/files/JU2000MAX_19020c62-5f51-4d31-a787-17b494b93b37.png?v=1781593755&width=900" },
     "carplay-screen/": { name: "Youducar CarPlay screens", img: "https://cdn.shopify.com/s/files/1/0637/7527/7119/files/2020-2025_-RAV4.jpg?v=1781866897&width=900", cover: true },
     "": { name: "All brands", img: "" }
