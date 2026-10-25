@@ -185,7 +185,7 @@ section[id]{scroll-margin-top:72px}
 }
 @media(max-width:760px){
   .wrap{padding-inline:16px}
-  .intro{padding-block:32px 0}
+  .intro{padding-block:14px 0}
   .intro p{font-size:16.5px}
   section{padding-block:56px}
   .brands,.how{grid-template-columns:1fr}
@@ -198,7 +198,7 @@ section[id]{scroll-margin-top:72px}
 
   /* phones: the stage gets taller; each product becomes a round icon with a red dot,
      tapping it opens a small panel above the icon */
-  .stage{height:calc(max(360px,100vw) + 30px)}
+  .stage{height:calc(max(360px,100vw) + 30px);margin-top:22px}
   .pc{width:58px;height:58px;padding:3px;border-radius:50%;overflow:visible}
   .pc .img{width:100%;height:100%;margin:0;border-radius:50%}
   .pc::after{content:"";position:absolute;top:-2px;right:-2px;width:12px;height:12px;border-radius:50%;background:var(--fault);border:2px solid #fff}
@@ -206,10 +206,8 @@ section[id]{scroll-margin-top:72px}
   #pc-screen .info{left:0;transform-origin:left bottom;border-color:var(--elec)}
   #pc-engine .info{right:0;transform-origin:right bottom}
   /* screen and engine panels open above their icons, in the gap under the headline, so they don't cover the car;
-     they run the full width with the button beside the title so they stay short enough to fit that gap */
-  #pc-screen .info,#pc-engine .info{bottom:66px;width:calc(100vw - 36px);max-width:none;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:12px;align-items:center}
-  #pc-screen .info .fault,#pc-engine .info .fault{grid-column:1/-1}
-  #pc-screen .info h3,#pc-engine .info h3{margin:0;max-width:none}
+     all three panels share one size */
+  .pc .info{width:min(250px,calc(100vw - 44px))}
   #pc-tyre .info{left:0;bottom:auto;top:68px;transform-origin:left top;border-color:var(--tyre)}
   .pc.on .info{opacity:1;transform:none;pointer-events:auto}
   .pc .fault{font-size:11px;margin-bottom:5px}
